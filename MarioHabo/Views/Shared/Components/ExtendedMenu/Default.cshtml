@@ -1,0 +1,72 @@
+﻿@*
+    ExtendedMenuViewComponent, will show the extended menu onklick off hamburger-icon, direct part off _Layout.cshtml
+*@
+@{
+}
+    <div class="flex-column rounded-right bg-primary align-content-around justify-content-center w-25 position-fixed" id="extendedmenu">
+        <div class="d-flex flex-md-column">
+           <div class="d-flex bg-primary p-3 align-content-center justify-content-center" id="menumainitem">
+               <div class="d-inline p-2">
+                   <div class="d-flex bg-primary ">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#d8d7d7" class="bi bi-person-badge-fill" viewBox="-5 0 16 16">
+                           <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm4.5 0a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zM8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm5 2.755C12.146 12.825 10.623 12 8 12s-4.146.826-5 1.755V14a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-.245z"/>
+                       </svg>
+                       <div id="secondaryperson">
+                           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#d8d7d7" class="bi bi-person-badge-fill" viewBox="0 0 16 16">
+                               <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm4.5 0a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zM8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm5 2.755C12.146 12.825 10.623 12 8 12s-4.146.826-5 1.755V14a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-.245z"/>
+                           </svg>
+                       </div>
+                   </div>
+               </div>
+               <span class="d-grid justify-content-center  align-content-center  " id="menutext">Möt Teamet</span>
+           </div>
+           <hr />
+           <div class="d-flex bg-primary p-3 justify-content-center align-content-center " id="menumainitem">
+               <div class="d-flex p-2 bg-primary">
+                   <div class="d-flex bg-primary">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#d8d7d7" class="bi bi-images" viewBox="0 0 16 16">
+                           <path d="M4.502 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                           <path d="M14.002 13a2 2 0 0 1-2 2h-10a2 2 0 0 1-2-2V5A2 2 0 0 1 2 3a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v8a2 2 0 0 1-1.998 2zM14 2H4a1 1 0 0 0-1 1h9.002a2 2 0 0 1 2 2v7A1 1 0 0 0 15 11V3a1 1 0 0 0-1-1zM2.002 4a1 1 0 0 0-1 1v8l2.646-2.354a.5.5 0 0 1 .63-.062l2.66 1.773 3.71-3.71a.5.5 0 0 1 .577-.094l1.777 1.947V5a1 1 0 0 0-1-1h-10z"/>
+                       </svg>
+                   </div>
+               </div>
+               <span class="d-grid align-content-center justify-content-center" id="menutext"> Referens Jobb</span>
+           </div>
+           <hr />
+           <div class="d-flex bg-primary p-3 justify-content-center align-content-center" id="menumainitem">
+               <div class="d-flex p-2 bg-primary">
+                   <div class="d-flex bg-primary">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#d8d7d7" class="bi bi-bricks" viewBox="0 0 16 16">
+                           <path d="M0 .5A.5.5 0 0 1 .5 0h15a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5H14v2h1.5a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5H14v2h1.5a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5H.5a.5.5 0 0 1-.5-.5v-3a.5.5 0 0 1 .5-.5H2v-2H.5a.5.5 0 0 1-.5-.5v-3A.5.5 0 0 1 .5 6H2V4H.5a.5.5 0 0 1-.5-.5v-3zM3 4v2h4.5V4H3zm5.5 0v2H13V4H8.5zM3 10v2h4.5v-2H3zm5.5 0v2H13v-2H8.5zM1 1v2h3.5V1H1zm4.5 0v2h5V1h-5zm6 0v2H15V1h-3.5zM1 7v2h3.5V7H1zm4.5 0v2h5V7h-5zm6 0v2H15V7h-3.5zM1 13v2h3.5v-2H1zm4.5 0v2h5v-2h-5zm6 0v2H15v-2h-3.5z"/>
+                       </svg>
+                   </div>
+               </div>
+               <span class="d-grid align-content-around justify-content-center  " id="menutext">Tjänster</span>
+           </div>
+           <hr />
+           <div class="d-flex bg-primary p-3 justify-content-center align-content-center" id="menumainitem">
+               <div class="d-flex p-2 bg-primary">
+                   <div class="d-flex bg-primary">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#d8d7d7" class="bi bi-tablet" viewBox="0 0 16 16">
+                           <path d="M12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h8zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4z"/>
+                           <path d="M8 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+                       </svg>
+                   </div>
+               </div>
+               <span class="d-grid align-content-around justify-content-center  " id="menutext">Kontakt</span>
+           </div>
+           <hr />
+           <div class="d-flex bg-primary p-3 justify-content-center  align-content-center" id="menumainitem">
+               <div class="d-flex p-2 bg-primary">
+                   <div class="d-flex bg-primary">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#d8d7d7" class="bi bi-info-square" viewBox="0 0 16 16">
+                           <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                           <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                       </svg>
+                   </div>
+                </div>
+               <span class="d-grid align-content-around justify-content-center " id="menutext">Om oss</span>
+           </div>
+           <hr />
+        </div>
+</div>

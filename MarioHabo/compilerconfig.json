@@ -1,0 +1,10 @@
+﻿[
+  {
+    "outputFile": "../../../../.nuget/packages/bootstrap.sass/5.2.2/contentFiles/any/any/wwwroot/scss/_carousel.css",
+    "inputFile": "../../../../.nuget/packages/bootstrap.sass/5.2.2/contentFiles/any/any/wwwroot/scss/_carousel.scss"
+  },
+  {
+    "outputFile": "wwwroot/scss/custom.css",
+    "inputFile": "wwwroot/scss/custom.scss"
+  }
+]

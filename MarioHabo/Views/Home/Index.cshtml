@@ -1,0 +1,14 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@using MarioHabo.Models;
+@model VideoPlayerModel;
+@await Component.InvokeAsync("WideVideoPlayer", new{models = Model})
+
+@await Component.InvokeAsync("WideInfoPane", new {models = @ViewData["wideinfo"]})
+
+
+@section wideComponentsScripts{
+    <script src="~/js/WideInfoPane.js" asp-append-version="true"></script>
+    <script src="~/js/WideVideoPlayerScript.js" asp-append-version="true"></script>
+}

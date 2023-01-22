@@ -1,0 +1,57 @@
+﻿
+@using MarioHabo.Models;
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model IEnumerable<CarouselItemTextModel>
+
+    <div class="carouseltextcontainer d-inline-flex justify-content-lg-end flex-row flex-fill">
+@{
+    var rei = 0;
+    @foreach(var item in Model)
+    {       
+            if (rei > 0)
+            {
+               <div style="width:0px; height:0px; display:none;" class="hiddencontentsubheader">
+               <p style="width:0px; height:0px; display:none;">@item.SubHeader</p>
+                   <div style ="width:0px; height:0px; border:0; padding:0; display:none" class="hiddencontenttext">
+                   <p style="width:0px; height:0px; display:none;">@item.Text</p></div>  
+               </div>
+                
+
+            }
+            else
+            {
+               <div style="width:0px; height:0px; display:none;" class="hiddencontentsubheader">
+               <p style="width:0px; height:0px; display:none;">@item.SubHeader</p>
+                   <div style ="width:0px; height:0px; border:0; padding:0; display:none" class="hiddencontenttext">
+                   <p style="width:0px; height:0px; display:none;">@item.Text</p></div>  
+               </div>
+                <div class="carouseltext d-inline-block justify-content-lg-end">
+                    <div class="d-flex flex-fill flex-grow-1 w-100 h-100">
+                <div class="d-flex flex-column flex-fill justify-content-lg-start flex-wrap">
+                    <h4 id="textheader">@item.SubHeader</h4>
+                    <div class="d-flex flex-fill flex-column justify-content-lg-start flex-wrap">
+                        <p id="textparagraph">@item.Text</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        }
+        rei++;
+    }
+ }
+</div>
+<div class="d-flex flex-row flex flex-fill justify-content-between overflow-visible subtextdotcontainer">
+@{
+
+    @foreach(var item in Model)
+    {
+  
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#d8d7d7" class="bi bi-circle-fill caroudots" viewBox="0 0 16 16">
+            <circle cx="8" cy="8" r="8"/>
+        </svg>
+        
+    }
+}
+</div>

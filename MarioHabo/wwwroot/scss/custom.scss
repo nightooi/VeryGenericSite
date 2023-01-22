@@ -1,0 +1,327 @@
+﻿
+
+
+
+$dark: #1d1c1c;
+$black: #000000;
+$primfill: #d8d7d7;
+$borderblackie: #000000;
+
+
+$theme-colors: ( "primary": $dark,
+                  "secondary": $black);
+
+@import "../bootstrap/scss/bootstrap.scss";
+
+
+$custom-colors: ("borderblackie": #000000, "primfill": $primfill);
+
+$theme-colors: map-merge($theme-colors, $custom-colors);
+
+@font-face{
+    font-family: 'Righteous';
+    src: url("../assets/Fonts/Righteous/Righteous-Regular.ttf");
+
+    
+}
+
+@font-face{
+    font-family: 'BlackOpsOne';
+    src: url("../assets/Fonts/Black_Ops_One/BlackOpsOne-Regular.ttf")
+}
+
+#logo{
+    font-family:BlackOpsOne;
+    font-size: 36px;
+}
+body{
+    background-image: url('../assets/Images/Specials/pexels-nadine-wuchenauer-1726789.jpg');
+    background-size: cover;
+    font-family: Righteous;
+
+    transition-duration: 2s;
+    tranistion-delay: 1s;
+
+}
+
+#navitemcontainer{
+
+
+
+}
+
+.nav, .navbar-nav, li, a{
+    color: #d8d7d7 !important;
+}
+
+#navtogglebutton {
+    background-image: $primfill;
+}
+
+
+#extendedmenu {
+    transition-timing-function: cubic-bezier(.68,.45,.35,.96);
+    transition: 1s;
+    margin-top: 5rem !important;
+    height: 860px;
+    overflow: visible;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    z-index: $zindex-sticky;
+}
+#menumainitem{
+    color: $primfill;
+    border-top-right-radius:25px;
+    border-bottom-right-radius: 15px;
+}
+
+#secondaryperson {
+    transform: translate(-5px, -3px);
+    overflow: visible;
+}
+
+hr{
+    height: 10px;
+    color:$primfill;
+}
+
+#menutext{
+    border-bottom-right-radius: 15px;
+}
+
+.textimg {
+    width: 100%;
+    height: 100%;
+    object-position: left;
+    object-fit: contain;
+    align-items: center;
+    align-content: flex-start;
+    z-index: $zindex-dropdown;
+    flex-wrap: wrap;
+    transform: scale(1.5);
+}
+
+
+.sidelabelTextimgcomp{
+    z-index: 2000;
+    flex-wrap: wrap;
+}
+
+
+
+
+h3{
+    z-index: 2000;
+    position:sticky;
+}
+
+.carousel {
+    left: 320px;
+    top: 115px;
+    flex: content;
+    display: block;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: linear-gradient(184deg, rgba(1,1,1,1) 61%, rgba(89,87,87,1) 86%, rgba(128,128,128,0.9976365546218487) 97%);
+
+    box-shadow: 5px 10px 50px rgb(0, 0, 0);
+}
+
+.mycarouselnextbutton{
+
+    z-index:2000;
+    position:absolute;
+    top: 330px;
+    left: 1160px;
+    background: none;
+}
+
+.mycarouselprevbutton{
+
+    z-index: 1010;
+    position:absolute;
+    top: 330px;
+    left: 40px;
+    background:none;
+}
+
+.carouseltextcontainer {
+    position: relative;
+    left: 1000px;
+    height: 100%;
+    top:0px;
+    overflow: hidden;
+    z-index: 1000;
+    background-image: repeating-linear-gradient(rgb(0, 0, 0), 50 10, rgb(255, 255, 255) 20 10);
+    background: linear-gradient(70deg, rgba(1,1,1,0.75) 76%, rgba(137, 134, 134, 0.90) 95%);
+    backdrop-filter:blur(5px);
+    color:$primfill;
+    transition-duration: 1s;
+    overflow-y:scroll;
+    scrollbar-width: thin;
+}
+.carouseltextcontainer:hover{
+    transform: translateX(-35%);
+    transition-duration: 1s;
+}
+
+.carouseltext {
+    min-width: 640px;
+    width: 600px;
+}
+.mainheadercontainer {
+
+    position:absolute;
+    z-index: 1000;
+    top:0px;
+    background-image: linear-gradient(70deg, rgba(1,1,1,0.75) 48%, rgba(137, 134, 134, 0.013) 64%);
+    width: 100%;
+    height: 13%;
+    padding-top:20px;
+    padding-left:20%;
+    left: -48px;
+    color:$primfill;
+
+}
+
+.imgimgcont {
+
+    position: absolute;
+    max-width: 100%;
+    max-height: 100%;
+    height: 720px;
+    width: 1280px;
+    object-fit: cover;
+    flex: none;
+    object-position: left;
+    left: 0px;
+    top: 0px;
+}
+
+.subtextdotcontainer {
+    position: absolute;
+    z-index: 1010;
+    left: 1120px;
+    top: 670px;
+    transform:scale(0.4);
+    transition-duration: 1s;
+}
+
+.caroudots{
+    margin: 0px 0px 0px 4px;
+}
+
+.caroudotstoggle{
+
+    fill: white;
+    filter: drop-shadow(5px 5px 50px rgb(255, 255, 255));
+
+    transform:scale(1.2);
+}
+
+.footercontainer{
+
+    position: sticky !important;
+    bottom: -120px;
+
+}
+
+.widevideocontainer {
+    position: absolute;
+    top: 70px;
+    display:contents;
+    
+}
+
+.widevideocontainer video{
+
+
+    top: 70px;
+    min-width: 1900px;
+    min-height:420px;
+
+    width: 1900px;
+    height: 420px;
+
+    object-fit: cover;
+    position: absolute;
+
+    overflow:hidden;
+
+    overflow-x:hidden;
+    
+}
+.videotextcontaier {
+    position: relative;
+    top: 70px;
+    min-height: 420px;
+    min-width: 520px;
+    height: 420px;
+    width: 520px;
+    transform: translateX(1383px);
+    color: $primfill;
+    word-wrap:anywhere;
+    overflow-wrap:anywhere;
+    background-image: repeating-linear-gradient(rgb(0, 0, 0), 50 10, rgb(255, 255, 255) 20 10);
+    background: linear-gradient(70deg, rgba(1,1,1,0.75) 76%, rgba(137, 134, 134, 0.90) 95%);
+    backdrop-filter:blur(5px);
+}
+
+.wideinfopanecontainer {
+    background: linear-gradient(70deg, rgba(1,1,1,0.75) 76%, rgba(137, 134, 134, 0.90) 95%);
+    background-image: repeating-linear-gradient(rgb(0, 0, 0), 50 10, rgb(255, 255, 255) 20 10);
+    color: $primfill;
+    padding-top: 70px;
+    position: relative;
+    transform: translateY(70px);
+}
+wideinfopanecontainer hr{
+    z-index: 1000;
+}
+
+.widepaneimgcont > img {
+    //content: url("../assets/Images/pexels-cal-david-735319.jpg");
+    width: 350px;
+    height: 250px;
+    min-width: 250px;
+    min-height: 160px;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    flex: none;
+    object-position: left;
+}
+
+.widepaneimgcont {
+
+    border-radius: 50%;
+    z-index: 0;
+   
+}
+
+.wideinfopanecontainer > * {
+
+    padding-left:130px;
+    margin: 20px;
+
+}
+
+.widepanetextcontainer{
+
+    display: none;
+    width: 800px;
+    margin-right: 300px;
+    padding-left: 90px;
+}
+
+.h5wideinfopane{
+
+    padding-left: 130px;
+}
+
+.wideinfosubheaders{
+
+  
+}
+
