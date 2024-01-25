@@ -10462,7 +10462,7 @@ h3, .h3 {
 .caroudotstoggle {
   fill: white;
   filter: drop-shadow(5px 5px 50px rgb(255, 255, 255));
-  transform: scale(1.2);
+  transform: scale(1.5);
 }
 
 .footercontainer {
@@ -10470,9 +10470,14 @@ h3, .h3 {
   bottom: -120px;
 }
 
-@media (min-width: =<400px) {
-  .footercontaner {
-    transform: translateY(500px);
+@media (min-width: 320px) {
+  .footercontainer {
+    bottom: -420px;
+  }
+}
+@media (max-width: 400px) {
+  .footercontainer {
+    bottom: -420px;
   }
 }
 .widevideocontainer {
