@@ -1,15 +1,15 @@
 ﻿
-
+@import "SubArticleCompnentBSTagHelper.scss";
 
 
 $dark: #1d1c1c;
 $black: #000000;
 $primfill: #d8d7d7;
 $borderblackie: #000000;
+$BackGroundImage: url('../assets/Images/Specials/pexels-nadine-wuchenauer-1726789.jpg');
+$AlternativeBackgroundImage: url('../assets/Images/pexels-thiago-matos-2317640.jpg');
 
-
-$theme-colors: ( "primary": $dark,
-                  "secondary": $black);
+$theme-colors: ( "primary": $dark, "secondary": $black);
 
 @import "../bootstrap/scss/bootstrap.scss";
 
@@ -36,11 +36,11 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
 }
 body{
     background-image: url('../assets/Images/Specials/pexels-nadine-wuchenauer-1726789.jpg');
-    background-size: cover;
+    background-repeat: repeat;
     font-family: Righteous;
 
     transition-duration: 2s;
-    tranistion-delay: 1s;
+    transition-delay: 1s;
 
 }
 
@@ -52,6 +52,7 @@ body{
 
 .nav, .navbar-nav, li, a{
     color: #d8d7d7 !important;
+    z-index: $zindex-sticky;
 }
 
 #navtogglebutton {
@@ -227,6 +228,15 @@ h3{
 
 }
 
+@media (min-width: "=<400px")
+{
+    .footercontaner{
+        transform: translateY(500px);
+}
+}
+
+
+
 .widevideocontainer {
     position: absolute;
     top: 70px;
@@ -325,3 +335,22 @@ wideinfopanecontainer hr{
   
 }
 
+.ArticleIntroductory{
+
+    background-color: #ebebeba4;
+    box-shadow: 10px 26px 16px rgba(255, 255, 255,0.5);
+}
+
+.wrappedpicarticle{
+
+    background-color: #ded9d9;
+}
+
+.articleimage{
+
+   -webkit-filter: drop-shadow(5px 8px 10px rgba(89,87,87,.75));
+   -moz-filter: drop-shadow(5px 8px 10px rgba(89,87,87,.75));
+   -ms-filter: drop-shadow(5px 8px 10px rgba(89,87,87,.75));
+   -o-filter: drop-shadow(5px 8px 10px rgba(89,87,87,.75));
+   filter: drop-shadow(5px 16px 8px rgba(89,87,87,.75));
+}

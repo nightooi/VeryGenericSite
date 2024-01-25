@@ -1,4 +1,5 @@
 ﻿$(function() {
+        $("body").css("transition-duration", "2s");
     xvar = 175;
     yvar = 25;
     var xmove = xvar;
@@ -27,7 +28,6 @@
   
     $("[data-article-number]").each((index, element) => {
         $(element).css("height", "20%");
-        $(element).css("overflow", "hidden");
 
         $(element).on("mouseover", () => {
             console.log("mouseover triggered");
@@ -38,7 +38,6 @@
             $(element).parent().parent().css("height", "100%");
             $(element).parent().parent().css("overflow", "initial");
             $(element).css("height", "100%");
-            $(element).css("overflow", "initial");
             $(element).css("transition-duration", "1s");
             $(".wideinfopanetext").css("height", "1200px");
         });
@@ -50,20 +49,17 @@
             $(element).css("overflow", "hidden");
             $(element).css("transition-duration", "1s");
             $(element).parent().parent().css("height", "50%");
-            $(element).parent().parent().css("overflow", "hidden");
             $(element).parent().parent().css("transition-duration", "2s");
             $(".wideinfopanetext").css("height", "800px");
 
         });
 
     })
-        $("body").css("transition-duration", "2s");
 
     
     $("[data-article-container-number]").each((index, element) => {
 
         $(element).css("height", "50%");
-        $(element).css("overflow", "hidden");
 
 
 
@@ -75,21 +71,18 @@
 function onMouseLeave(some) {
 
     console.log("mouseleave triggered")
+    $(some).css("transition-duration", "3s");
     $(some).css("height", "30%");
-    $(some).css("overflow", "hidden");
-    $(some).css("transition-duration", "1s");
     $(some).parent().parent().css("height", "400px");
-    $(some).parent().parent().css("overflow", "hidden");
-    $(some).parent().parent().css("transition-duration", "1s");
+    $(some).parent().parent().css("transition-duration", "2s");
 }
 
 function onMouseOver(some) {
     console.log("mouseover triggered");
+    $(some).css("transition-duration", "2s");
+    $(some).parent().parent().css("transition-duration", "2s");
+    $(some).parent().css("transition-duration", "2s");
     $(some).css("height", "100%");
-    $(some).css("overflow", "initial");
-    $(some).css("transition-duration", "1s");
     $(some).parent().parent().css("height", "100%");
-    $(some).parent().parent().css("overflow", "initial");
-    $(some).parent().parent().css("transition-duration", "1s");
 
 }

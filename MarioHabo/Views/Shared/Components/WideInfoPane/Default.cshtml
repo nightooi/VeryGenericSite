@@ -16,7 +16,7 @@
                 int it = 6;
                 int outerit = 0;
                 int contit = 0;
-                @foreach(var item in Model.Info)
+                @foreach (var item in Model.Info)
                 {
                     string cont = "widetextcontainercontainer" + contit.ToString();
 
@@ -24,35 +24,35 @@
                         <div class="widepanetextcontainer d-flex flex-column align-contnent-center">
                             @{
                                 int innerit = 0;
-                                @foreach(var item2 in item.SubHeader)
-                                  {
+                                @foreach (var item2 in item.SubHeader)
+                                {
                                     string artname = "articlecontainer" + outerit.ToString();
                                     <div class="d-flex flex-column justify-content-between" id = "@artname" data-article-number=@outerit>
-                                        @if(item.SubHeader != null)
+                                        @if (item.SubHeader != null)
                                         {
                                             <h h-number="@it" class="pb-2 pe-5 me-5 wideinfosubheaders">@item2</h>
                                         }
                                         <p class="pb-5 ps-3">@item.Text[innerit]</p>
                                         <a href="#" class="my-5">klicka här för att få reda på mer</a>
                                     </div>
-                                        <hr />
+                                    <hr />
                                     it++;
                                     innerit++;
                                     outerit++;
                                 }
                             }
+                        </div>
+                        <div class="d-flex flex-column justify-conent-between">
+                            <div class="widepaneimgcont">
+                                <img alt="..." src="@item.ImgPath[0]" class="image-fluid"/>
                             </div>
-                            <div class="d-flex flex-column justify-conent-between">
-                                <div class="widepaneimgcont">
-                                    <img alt="..." src="@item.ImgPath[0]"/>
-                                </div>
-                                <div class="widepaneimgcont">
-                                    <img alt="..." src="@item.ImgPath[1]"/>
-                                </div>
+                            <div class="widepaneimgcont">
+                                <img alt="..." src="@item.ImgPath[1]" class="image-fluid"/>
                             </div>
                         </div>
+                    </div>
                     <hr/>
-                contit++;
+                    contit++;
                 }
             }
         </div>

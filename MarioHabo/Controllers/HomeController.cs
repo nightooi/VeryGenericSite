@@ -2,6 +2,8 @@
 
 using Microsoft.AspNetCore.Mvc;
 
+using NuGet.ContentModel;
+
 using System.Diagnostics;
 
 namespace MarioHabo.Controllers
@@ -31,13 +33,13 @@ namespace MarioHabo.Controllers
             };
             
             ViewData["wideinfo"] = infopaneItems;
-
-            var file = Directory.GetFiles("C:/Users/rafae/source/repos/MarioHabo/MarioHabo/wwwroot/assets/Images/Videos");
+            var file = Directory.GetFiles(Path.Combine(Environment.CurrentDirectory, "wwwroot/assets/Images/Videos/"));
             string[] placehold = new string[file.Count()];
             var iterator = 0;
             foreach(var item in file)
             {
-                placehold[iterator] = item.Replace("C:/Users/rafae/source/repos/MarioHabo/MarioHabo/wwwroot", "..");
+                placehold[iterator] = item.Replace("C:\\Users\\Bartek\\source\\repos\\mahbo\\MarioHabo\\wwwroot", "..");
+                Console.WriteLine(placehold[iterator]);
                     iterator++;
             }
 
@@ -45,8 +47,8 @@ namespace MarioHabo.Controllers
             {
                 Header = "Wide Video Player Header",
                 Text = "this is some text that's \\" +
-                "that's gonna be inserted into the widevideoplayer text pane, it should be quite long for we will have to define \\" +
-                "and test its functionality quite thouroughly. Let's hope nothing breaks cus this will be hard to fix. Nah jk \\" +
+                "that's gonna be inserted into the widevideoplayer text pane, \\" +
+                ". Let's hope nothing breaks cus this will be hard to fix. Nah jk \\" +
                 "it's gonna be fine, you'll see. Why do I do this to myself.",
                 VideoSource = placehold
                 

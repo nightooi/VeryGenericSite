@@ -9,15 +9,11 @@
             </div>
 
 @{
-
     var id = 0;
-
         @foreach(var item in Model.ImgPath)
         {
-            var idname = "imgcont" + id.ToString();
-        
+            var idname = "imgcont" + id.ToString(); 
                 <img src="@Url.Content(@item)" class="imgimgcont" loading="lazy" id=@idname alt="..."/>
-      
         id++;
         }
 }

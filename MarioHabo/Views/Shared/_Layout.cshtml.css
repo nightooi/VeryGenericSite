@@ -54,3 +54,7 @@ button.accept-policy {
     background-color: #82030f;
     color: #82030f;
 }
+
+header{
+    padding-bottom: 6em;
+}

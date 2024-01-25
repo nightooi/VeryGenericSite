@@ -1,0 +1,46 @@
+﻿@using MarioHabo.Models;
+@model ArticleIntroductoryModel;
+<div class="container ArticleIntroductory justify-content-around ">
+<div class="h-25 w-100 pt-5"></div>
+<div class="container flex-colum  pt-5">
+    <div class="col w-75 h-100">
+        @foreach(var i in @Model)
+        {
+            <partial name="~/Views/Shared/ArticleItemPartial.cshtml" for=@i />
+        }
+    </div>
+
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
