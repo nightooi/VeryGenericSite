@@ -1,6 +1,6 @@
 ﻿
-var timeoucallb;
 $(function () {
+var timeoucallb;
     let i = $("#extendedmenu")
     let b = { transform: "translateX(-1500px)" };
     let c = { transform: "translateX(0px)" }

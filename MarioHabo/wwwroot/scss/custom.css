@@ -10465,17 +10465,13 @@ h3, .h3 {
   transform: scale(1.5);
 }
 
-.footercontainer {
-  position: sticky !important;
-  bottom: -120px;
-}
-
-@media (min-width: 320px) {
+@media screen and (min-width: 800px) {
   .footercontainer {
-    bottom: -420px;
+    position: sticky !important;
+    bottom: -150px;
   }
 }
-@media (max-width: 400px) {
+@media (-webkit-min-device-pixel-ratio: 2), screen and (max-width: 320px) {
   .footercontainer {
     bottom: -420px;
   }
