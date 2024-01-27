@@ -2,12 +2,12 @@
 
 @if (Model.RightBound)
 {
-    <div class="row justify-self-center ps-5 ms-5 mt-lg-5 me-5 pe-5  ">
+    <div class="d-lg-flex d-md-grid justify-self-center ps-xxl-5 ms-xxl-5 mt-xxl-5 me-xxl-5 pe-xxl-5">
         <div class="w-25"></div>
         <div class="col wrappedpicarticle pt-3 border border-bottom border-left border-2 rounded shadow p-3 mb-5 bg-body rounded">
             <div class="row row-cols-2"></div>
                 <div class="flex-container">
-                    <img src="@Model.ImgPath" alt="Placeholder Image" loading="eager" class="float-end w-50 h-50 pb-2 ps-2 ms-2 articleimage">
+                    <img src="@Model.ImgPath" alt="Placeholder Image" loading="eager" class="float-end w-50 pb-2 ps-2 ms-2 articleimage">
                     <div class="flex-column">
    
                     <h3 class="text-start">@Model.Article[0]</h3>
@@ -21,13 +21,12 @@
 }
 else
 {
-    <div class="row justify-self-center ms-lg-5 ps-lg-5 mt-lg-5">
-                    <div class="w-25 ps-5 ms-5"></div>
-        <div class="col">
+    <div class="row justify-self-center ms-xxl-5 ps-xxl-5 mt-xxl-5 ms-1">
+        <div class="col d-flex">
             <div class="row row-cols-2">
             </div>
             <div class="flex-container wrappedpicarticle ps-3 pt-3 border border-bottom border-left border-2 shadow p-3 mb-5 bg-body rounded">
-                    <img src="@Model.ImgPath" loading="eager" class="float-start w-50 h-50 pb-2 pe-2 me-2 articleimage">
+                    <img src="@Model.ImgPath" loading="eager" class="float-start w-50 pb-2 pe-2 me-2 articleimage">
                     <div class="flex-column">
                     <h3 class="text-start">@Model.Article[0]</h3>
                     <h5 class="text-start">@Model.Article[1]</h5>

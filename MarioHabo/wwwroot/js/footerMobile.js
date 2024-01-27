@@ -27,7 +27,6 @@ $(function(){
             })
 
         $(document).on("vmousemove", (eventargs) => {
-
             if (selected)
             {
                 let scrollDistance = calcScrollHeight(startCoords, eventargs.clientY);
@@ -56,28 +55,27 @@ $(function(){
                 
             }
         })
+
         $(document).on("vmouseup", ()=> {
 
             seleced = false;
-            console.log("vmouseUP")
         })
             
-            $(".footercontainer").on("tap", () => {
-                offset = 0;
-                $(".footercontainer").css("transition-duration", "0.2s");
-                $(".footercontainer").css("bottom", downPos);
-                upState = false;
-                selected = false;
-            })
-            $(document).on("tap", () => {
-                offset = 0;
-                $(".footercontainer").css("transition-duration", "0.2s");
-                $(".footercontainer").css("bottom", downPos);
-                console.log(downPos +" ::downPos")
-                selected = false;
-            })
+        $(".footercontainer").on("tap", () => {
+             offset = 0;
+             $(".footercontainer").css("transition-duration", "0.2s");
+             $(".footercontainer").css("bottom", downPos);
+             upState = false;
+             selected = false;
+         })
+         $(document).on("tap", () => {
+             offset = 0;
+             $(".footercontainer").css("transition-duration", "0.2s");
+             $(".footercontainer").css("bottom", downPos);
+             console.log(downPos +" ::downPos")
+             selected = false;
+         })
     }
-
 })
 
 function normaliseString(obj) {
