@@ -11,9 +11,6 @@ $(function(){
         let upState = 0;
         let currentHeight = 0;
 
-
-
-
             container.on("vmousedown", (eventargs) => {
                 selected = true;
                 startCoords = eventargs.clientY;
@@ -37,7 +34,7 @@ $(function(){
                     console.log(currentHeight + " :::CurrentHeight::upState")
                     input = (currentHeight + scrollDistance);
                     console.log(input + " ::input");
-                    if (input < 0) {
+                    if ( input > -425 && input < 0) {
                         container.css("transition-duration", "0s");
                         container.css("bottom", `${parseInt(input)}px`)
                     }

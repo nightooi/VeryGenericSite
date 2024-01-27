@@ -10465,15 +10465,54 @@ h3, .h3 {
   transform: scale(1.5);
 }
 
-@media screen and (min-width: 800px) {
+@media only screen and (min-width: 1440) and (min-height: 841) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 1), (webkit-min-device-pixel-ratio: 1) {
   .footercontainer {
-    position: sticky !important;
+    bottom: -220px;
+  }
+}
+@media only screen and (max-width: 760) and (max-height: 860px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 1.5), (webkit-min-device-pixel-ratio: 1.5) {
+  .footercontainer {
+    bottom: -220px;
+  }
+}
+@media only screen and (min-width: 1024px) and (min-height: 840px) and (orientation: landscape) {
+  .footercontainer {
     bottom: -150px;
   }
 }
-@media (-webkit-min-device-pixel-ratio: 2), screen and (max-width: 320px) {
+@media only screen and (min-width: 1024px) and (max-height: 650px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2), (webkit-min-device-pixel-ratio: 2) {
+  .footercontainer {
+    bottom: -220px;
+  }
+}
+@media only screen and (min-width: 381px) and (min-height: 681px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2), (min-device-pixel-ratio: 2) {
+  .footercontainer {
+    bottom: -380px;
+  }
+}
+@media (max-width: 380px) and (max-height: 680px), (-webkit-min-device-pixel-ratio: 1.5) and (orientation: portrait) and (min-device-pixel-ratio: 1.5) {
   .footercontainer {
     bottom: -420px;
+  }
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 3.5), (min-device-pixel-ratio: 3.5) {
+  .footercontainer {
+    bottom: -440px;
+  }
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5) and (max-width: 380) and (max-height: 900px) {
+  .footercontainer {
+    bottom: -420px;
+  }
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5) and (max-width: 430) and (max-width: 900) and (orientation: portrait) {
+  .footercontainer {
+    bottom: -380px;
+  }
+}
+@media only screen and (-webkik-min-device-pixel-ratio: 2), (min-device-pixel-ratio: 2) and (max-width: 800) and (max-height: 1024) and (orientation: portrait) {
+  .footercontainer {
+    bottom: -180px;
   }
 }
 .widevideocontainer {
