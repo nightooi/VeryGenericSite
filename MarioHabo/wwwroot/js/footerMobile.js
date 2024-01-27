@@ -5,6 +5,8 @@ $(function(){
     if (this.documentElement.clientWidth >= 320*2 || this.documentElement.clientWidth <= 500*2)
     {
         let container = $(".footercontainer");
+        let downPos = container.css("bottom");
+        let parsedDownPos = parseInt(downPos);
         let selected = 0;
         let dataAttr = "data-current-pos-b";
         let startCoords = 0;
@@ -34,7 +36,7 @@ $(function(){
                     console.log(currentHeight + " :::CurrentHeight::upState")
                     input = (currentHeight + scrollDistance);
                     console.log(input + " ::input");
-                    if ( input > -425 && input < 0) {
+                    if (input > parsedDownPos-5 && input < 0) {
                         container.css("transition-duration", "0s");
                         container.css("bottom", `${parseInt(input)}px`)
                     }
@@ -42,10 +44,10 @@ $(function(){
                 else
                 {
                     console.log(currentHeight + "::currentHeightChecked");
-                    currentHeight = 420;
+                    currentHeight = -parsedDownPos;
                     input = 0- (currentHeight - scrollDistance)
 
-                    if (input < 0) {
+                    if (input> parsedDownPos -5 && input < 0) {
                         console.log(currentHeight + " ::currentHeight");
                         container.css("transition-duration", "0s");
                         container.css("bottom", `${parseInt(input)}px`);
@@ -57,21 +59,21 @@ $(function(){
         $(document).on("vmouseup", ()=> {
 
             seleced = false;
+            console.log("vmouseUP")
         })
             
             $(".footercontainer").on("tap", () => {
                 offset = 0;
                 $(".footercontainer").css("transition-duration", "0.2s");
-                $(".footercontainer").css("bottom", "-420px");
+                $(".footercontainer").css("bottom", downPos);
                 upState = false;
                 selected = false;
-                $(".footercontainer")[1].setAttribute(dataAttr, "-420");
             })
             $(document).on("tap", () => {
                 offset = 0;
                 $(".footercontainer").css("transition-duration", "0.2s");
-                $(".footercontainer").css("bottom", "-420px");
-                $(".footercontainer")[1].setAttribute(dataAttr, "-420");
+                $(".footercontainer").css("bottom", downPos);
+                console.log(downPos +" ::downPos")
                 selected = false;
             })
     }
