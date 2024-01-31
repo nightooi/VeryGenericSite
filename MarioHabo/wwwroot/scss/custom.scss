@@ -240,9 +240,8 @@ h3{
 }
 
 
-@media only screen and (min-width: 1024px) and (min-height: 840px) and (orientation: landscape)
-{
-    .footercontainer{
+@media only screen and (min-width: 1024px) and (min-height: 840px) and (orientation: landscape) {
+    .footercontainer {
         bottom: -150px;
     }
 }

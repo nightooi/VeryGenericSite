@@ -1,0 +1,22 @@
+﻿@using MarioHabo.Models
+
+@model BackgroundOverlayVideoPlayerModel
+
+<div class="d-inline-block">
+        @foreach(var i in Model.Video)                                                 
+        {                                                                        
+            <video src="@i.VideoPath" class="object-fit-cover" autoplay muted loop>                                           
+                <div class="d-inline-block">                                     
+                   <p><span class="bottom">@Model.WaterMark</span></p>           
+                </div>
+            </video>                                                             
+        }                                                                        
+</div>
+
+
+           
+                                   
+           
+                                   
+                       
+                   

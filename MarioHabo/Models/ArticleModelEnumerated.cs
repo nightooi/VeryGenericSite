@@ -1,18 +1,18 @@
 ﻿using System.Collections;
 namespace MarioHabo.Models
 {
-    public class ArticleModel : IEnumerable<string>, IEnumerator<string>, ICollection<string>
+    public class ArticleModelEnumerated : IEnumerable<string>, IEnumerator<string>, ICollection<string>
     {
         public bool RightBound { get; set; }
-        public ArticleModel(string imgPath, string[] Article)
+        public ArticleModelEnumerated(string imgPath, string[] Article)
         {
             this._ImgPath = imgPath;
             this._Article = Article;
         }
         readonly private string? _ImgPath = null;
+        private bool disposedValue;
         public string? ImgPath { get { return _ImgPath; } }
         readonly private string[]? _Article = null;
-        private bool disposedValue;
         public string[]? Article { get { return _Article; } }
         private int Iterator { get; set; } = 0;
         public string Current => Article[Iterator];

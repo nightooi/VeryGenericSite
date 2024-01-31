@@ -5,24 +5,24 @@ using System.Collections.Generic;
 namespace MarioHabo.Models
 {
     //Just a collection, don't expect all positions in collection to be filled, im not resizing this trash.
-    public class ArticleIntroductoryModel : ICollection<ArticleModel>, IEnumerator<ArticleModel>, IEnumerable<ArticleModel>
+    public class ArticleIntroductoryModel : ICollection<ArticleModelEnumerated>, IEnumerator<ArticleModelEnumerated>, IEnumerable<ArticleModelEnumerated>
     { readonly static private int _TotalArticles = 0; private bool disposedValue;
         public int TotalAritcles { get { return _TotalArticles; } }
-        private ArticleModel[]? Article { get; set; }
+        private ArticleModelEnumerated[]? Article { get; set; }
         private int Index { get; set; } = -1;
         public int Count => Article.Length;
         public bool IsReadOnly => true;
-        public ArticleModel Current => Article [Index];
+        public ArticleModelEnumerated Current => Article [Index];
         object IEnumerator.Current => Article[Index];
-        public ArticleIntroductoryModel(ArticleModel[]? artDef)
+        public ArticleIntroductoryModel(ArticleModelEnumerated[]? artDef)
         {
             Article = artDef;
             while (this.MoveNext()) ;
         }
         public ArticleIntroductoryModel(string imgPath, string[] article)
         {
-            if (this.Article == null) this.Article = new ArticleModel[0];
-            Article.Append(new ArticleModel(imgPath, article));
+            if (this.Article == null) this.Article = new ArticleModelEnumerated[0];
+            Article.Append(new ArticleModelEnumerated(imgPath, article));
             foreach(var i in this)
             {
                i.RightBound = JustifyLeft();
@@ -35,7 +35,7 @@ namespace MarioHabo.Models
             Console.WriteLine(Index +" :::Index Justify At ArticleIntro");
             return false;
         }
-        public void Add(ArticleModel item)
+        public void Add(ArticleModelEnumerated item)
         {
             this.Article.Append(item);
         }
@@ -48,7 +48,7 @@ namespace MarioHabo.Models
             }
             Article = null;
         }
-        public bool Contains(ArticleModel item)
+        public bool Contains(ArticleModelEnumerated item)
         {
             for(int i=0; i< Article.Length; i++)
             {
@@ -56,7 +56,7 @@ namespace MarioHabo.Models
             };
             return false;
         }
-        public void CopyTo(ArticleModel[] array, int arrayIndex)
+        public void CopyTo(ArticleModelEnumerated[] array, int arrayIndex)
         {
             int k = 0;
             for (int i = arrayIndex; i < Article.Length; i++)
@@ -65,7 +65,7 @@ namespace MarioHabo.Models
                 k++;
             }
         }
-        public bool Remove(ArticleModel item)
+        public bool Remove(ArticleModelEnumerated item)
         {
             for (int i = 0; i < Article.Length; i++)
             {
@@ -84,9 +84,9 @@ namespace MarioHabo.Models
             }
             return false;
         }
-        public IEnumerator<ArticleModel> GetEnumerator()
+        public IEnumerator<ArticleModelEnumerated> GetEnumerator()
         {
-            return ((IEnumerable<ArticleModel>)Article).GetEnumerator();
+            return ((IEnumerable<ArticleModelEnumerated>)Article).GetEnumerator();
         }
         IEnumerator IEnumerable.GetEnumerator()
         {

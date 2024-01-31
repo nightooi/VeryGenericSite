@@ -5,12 +5,12 @@ namespace MarioHabo.ViewComponents
     [ViewComponent(Name = "WideVideoPlayer")]
     public class WideVideoPlayerViewComponent : ViewComponent
     {
-        private VideoPlayerModel model;
+        private BackgroundOverlayVideoPlayerModel model;
         public WideVideoPlayerViewComponent()
         {
 
         }
-        public async Task<IViewComponentResult> InvokeAsync(string rando, VideoPlayerModel models)
+        public async Task<IViewComponentResult> InvokeAsync(string rando, BackgroundOverlayVideoPlayerModel models)
         {
             this.model = models;
             return View(model);

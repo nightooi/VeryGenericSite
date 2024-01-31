@@ -1,11 +1,8 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-@using MarioHabo.Models;
-@model VideoPlayerModel;
-@await Component.InvokeAsync("WideVideoPlayer", new{models = Model})
 
-@await Component.InvokeAsync("WideInfoPane", new {models = @ViewData["wideinfo"]})
+<partial name="~/PartialViews/BackGroundOverlayVideoPartial.cshtml" for="@ViewData["videoModel"]"/>
 
 
 @section wideComponentsScripts{

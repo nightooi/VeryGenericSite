@@ -9,7 +9,7 @@ namespace MarioHabo.Controllers
         public IActionResult Index()
         {
             var s = Directory.GetFiles(Directory.GetCurrentDirectory() + "\\wwwroot\\assets\\Images", "*.jpg");
-            ArticleModel[] mos = Populate(s).ToArray();
+            ArticleModelEnumerated[] mos = Populate(s).ToArray();
             ArticleIntroductoryModel model = new ArticleIntroductoryModel(mos);
             string[] some = this.PopulateString(s, 5).ToArray();
             SubArticleShortModel mod = new SubArticleShortModel(
@@ -61,12 +61,12 @@ namespace MarioHabo.Controllers
         }
 
 
-        private IEnumerable<ArticleModel> Populate(string[] a)
+        private IEnumerable<ArticleModelEnumerated> Populate(string[] a)
         {
             foreach (var i in a)
             {
                 string k = i.Replace(Directory.GetCurrentDirectory() + "\\wwwroot", "..");
-                    yield return new ArticleModel(k,
+                    yield return new ArticleModelEnumerated(k,
                         new string[]
                                     {
                                         "Header", "Subheader"," Lorem ipsum dolor sit amet," +

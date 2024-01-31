@@ -1,10 +1,11 @@
-﻿$(function() {
-        $("body").css("transition-duration", "2s");
+﻿$(function () {
+    $("body").css("transition-duration", "2s");
     xvar = 175;
     yvar = 25;
     var xmove = xvar;
     var ymove = yvar;
     var border = 2;
+
     $(".widepaneimgcont").each((index, element) => {
         var xres = xmove * Math.random();
         var yres = ymove * Math.random()

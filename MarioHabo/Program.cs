@@ -1,18 +1,21 @@
 var builder = WebApplication.CreateBuilder(args);
-
-builder.Services.AddRazorPages()
-    .AddRazorRuntimeCompilation();
-builder.Services.AddMvcCore()
-   .AddRazorRuntimeCompilation();
-
-// Add services to the container.
+//add services to the controller 
 builder.Services.AddControllersWithViews();
 
-var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+
+builder.Services.AddRazorPages()
+   .AddRazorRuntimeCompilation();
+builder.Services.AddMvcCore()
+  .AddRazorRuntimeCompilation();
+
+var app = builder.Build();
+// Add services to the container.
+
 if (!app.Environment.IsDevelopment())
 {
+
+// Configure the HTTP request pipeline.
     app.UseExceptionHandler("/Home/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
@@ -27,6 +30,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=MeetTeam}/{action=Index}/{id?}");
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
