@@ -57,9 +57,9 @@ $(function(){
                         container.css("bottom", `${parseInt(input)}px`);
                     }
                 }
-
             }
         })
+
 
         $(".footercontainer").on("tap", () => {
             offset = 0;
