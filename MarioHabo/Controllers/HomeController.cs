@@ -26,7 +26,8 @@ namespace MarioHabo.Controllers
         {
             var a = new BackgroundOverlayVideoPlayerModel(new string[] 
             { "../assets/Images/Videos/Construction Site - 42923.mp4",
-              "../assets/Images/Videos/pexels-tima-miroshnichenko-6473946.mp4" }.AsEnumerable(), "MBHAB");
+              "../assets/Images/Videos/pexels-tima-miroshnichenko-6473946.mp4",
+              "../assets/Images/Videos/pexels-tima-miroshnichenko-6474141.mp4"}.AsEnumerable(), "MBHAB");
             ViewData["videoModel"] = a;
             return View();
         }

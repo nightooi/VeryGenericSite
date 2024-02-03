@@ -10433,6 +10433,12 @@ h3, .h3 {
   color: #d8d7d7;
 }
 
+@media (hover: hover) {
+  .footercontainer:hover {
+    bottom: 0px;
+    transition-duration: 0.73s;
+  }
+}
 .imgimgcont {
   position: absolute;
   max-width: 100%;
@@ -10515,22 +10521,9 @@ h3, .h3 {
     bottom: -180px;
   }
 }
-.widevideocontainer {
-  position: absolute;
-  top: 70px;
-  display: contents;
-}
-
-.widevideocontainer video {
-  top: 70px;
-  min-width: 1900px;
-  min-height: 420px;
-  width: 1900px;
-  height: 420px;
-  object-fit: cover;
-  position: absolute;
-  overflow: hidden;
-  overflow-x: hidden;
+video {
+  width: 100%;
+  height: auto;
 }
 
 .videotextcontaier {

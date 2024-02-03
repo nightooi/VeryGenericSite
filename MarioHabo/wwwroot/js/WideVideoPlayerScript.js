@@ -1,79 +1,125 @@
-﻿import { ajax } from "jquery";
-
+﻿
 function PlayPromiseHandler(playPromise) {
     if (playPromise !== undefined) {
         playPromise.then(() => {
-            
+         
         }).catch(error => {
 
-            console.log(error);
         });
     }
 }
 
-var totalVidLen = 0;
 $(function () {
-
-    $("video").each((index, element) => {
-        $(element).on('loadedmetadata', () => {
-            totalVidLen += $(element).length;
+    let vidLen = document.getElementsByTagName('video').length
+    var k = 0;
+    for (var i = 0; i < vidLen; i++) {
+        document.getElementsByTagName('video')[i].addEventListener("loadedmetadata", (element) => {
+            $(element.target).attr("data-video-len", element.target.duration)
+            $(element.target).attr("video-metadataloaded", true);
+            if (element.target.duration == document.getElementsByTagName('video')[0].duration) {
+                $(element.target).trigger("LoopVideo", element.target);
+                k++;
+            }
         })
-    })
+    }
 
-    var iterator = 0;
-    var playPromIter = 0;
-    $("video").each((index, element) => {
-
-        if ($(element).attr("autoplay")) {
-            
-            $(element).fadeIn();
-        } else {
-            $(element).fadeOut();
+    $("video").each(
+        (index, element) => {
+            if (index == 0)
+            {
+                $(element).fadeIn();
+            }
+            else
+            {
+                $(element).fadeOut();
+            }
         }
-
+    )
+        $(document).on("LoopVideo", (event, obj) => {
+            console.log($(obj).attr("data-video-len"))
+            setTimeout(() => {
+                var vids = document.getElementsByTagName('video');
+                for (var i = 0; i < vids.length; i++) {
+                    if ($(obj).attr("data-video-len") == $(vids[i]).attr("data-video-len")){
+                        if (i+1 < vids.length) {
+                            VideoFadeout(obj, vids[i+1], 2000, i);
+                        }
+                        else {
+                            VideoFadeout(obj, vids[0], 2000, i);
+                        }
+                    }
+                }
+            }, (parseFloat($(obj).attr("data-video-len")) - 2) * 1000);
+        })
+    $(document).on("move-me", (event, nextVideo) => {
+        $(nextVideo).css("transition-duration", "0s");
+        //add css classes that would allow this to happen, set that class and then reset.
+        $(nextVideo).css("transform", "translateY(-2000px)");
     })
- 
-        setInterval(() => {
-            iterator++;
-
-            if ((0 < iterator) && (iterator < $("video").length - 1)) {
-
-                const vid = $("video")[iterator - 1];
-                $(vid).fadeOut(2000);
-                $($("video")[iterator]).fadeIn(2000);
-                PlayPromiseHandler($("video")[iterator].play());
-            }
-            else if (iterator == 0) {
-                const vid = $("video")[$("video").length - 1];
-                $(vid).fadeOut(2000);
-                $($("video")[iterator]).fadeIn(2000);
-                //$("video")[iterator].currentTime = 0;
-                PlayPromiseHandler($("video")[iterator].play());
-            }
-            else if (iterator == $("video").length - 1) {
-
-                const vid = $("video")[$("video").length - 2];
-                $(vid).fadeOut(2000);
-                $($("video")[iterator]).fadeIn(2000);
-                //$("video")[iterator].currentTime = 0;
-                PlayPromiseHandler($("video")[iterator].play());
-                iterator = -1;
-            }
-
-        }, totalVidLen);
 })
 
 function VideoFadeout(video, nextVideo, time) {
 
-    if ($(video).currentTime >= time) {
-        $(video).fadeOut(time)
-    }
-    VideoFadeIn(nextVideo, time);
+        if (video.currentTime <= time) {
+            $(video).fadeOut(time)
+            setTimeout(() => { $(video).removeAttr("autoplay") }, time);
+        }
+        VideoFadeIn(nextVideo, time);
+        var len = document.getElementsByTagName('video').length
+        $(document).trigger("LoopVideo", nextVideo);
 }
 
 function VideoFadeIn(nextVideo, time) {
 
-        $(nextVideo).fadeIn(time);
+    $(document).trigger("move-me", event, nextVideo);
+    $(nextVideo).attr("autoplay");
+    setTimeout(() => { }, time)
+    $(nextVideo).fadeIn(time);
+    PlayPromiseHandler(nextVideo.play());
+    console.log($(nextVideo).attr("data-video-len") + ":::NEXTVIDEOLEN");
+}
+
+function RunVideoLoop(vidLen, iterator) {
+
+        iterator++;
+
+        if ((0 < iterator) && (iterator < $("video").length - 1))
+        {
+
+            //const vid = $("video")[iterator - 1];
+            //const nextVid = $("video")[iterator];
+            const vid = document.getElementsByTagName("video")[iterator - 1];
+            const nextVid = document.getElementsByTagName("video")[iterator];
+            //$(vid).fadeOut(2000);
+            //$($("video")[iterator]).fadeIn(2000);
+            //PlayPromiseHandler($("video")[iterator].play());
+             VideoFadeout(vid, nextVid, 2000);
+        }
+        else if (iterator == 0 && !isNaN(timeout))
+        {
+            //const vid = $("video")[$("video").length - 1];
+            //const nextVid = $("video")[iterator];
+            const vid = document.getElementsByTagName("video")[vidLen- 1];
+            const nextVid = document.getElementsByTagName("video")[iterator];
+            //$(vid).fadeOut(2000);
+            //$($("video")[iterator]).fadeIn(2000);
+            //$("video")[iterator].currentTime = 0;
+            //PlayPromiseHandler($("video")[iterator].play());
+            VideoFadeout(vid, nextVid, 2000);
+
+        }
+        else if (iterator == $("video").length - 1)
+        {
+            //const nextVid = document.getElementsByTagName("video")
+            //const vid = $("video")[$("video").length - 2];
+            const vid = document.getElementsByTagName("video")[vidLen-1];
+            const nextVid = document.getElementsByTagName("video")[0];
+            //$(vid).fadeOut(2000);
+            //$($("video")[iterator]).fadeIn(2000);
+            //$("video")[iterator].currentTime = 0;
+            //PlayPromiseHandler($("video")[iterator].play());
+            VideoFadeout(vid, nextVid, 2000);
+        }
 }
 
 

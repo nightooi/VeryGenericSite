@@ -55,6 +55,8 @@ body{
     z-index: $zindex-sticky;
 }
 
+   
+
 #navtogglebutton {
     background-image: $primfill;
 }
@@ -186,6 +188,14 @@ h3{
 
 }
 
+@media (hover: hover)
+{
+    .footercontainer:hover{
+        bottom: 0px;
+        transition-duration: 0.73s;
+    }
+}
+
 .imgimgcont {
 
     position: absolute;
@@ -300,28 +310,13 @@ and (-webkit-min-device-pixel-ratio: 2), (webkit-min-device-pixel-ratio: 2){
     }
 }
 .widevideocontainer {
-    position: absolute;
-    top: 70px;
-    display:contents;
     
 }
 
-.widevideocontainer video{
+video{
 
-
-    top: 70px;
-    min-width: 1900px;
-    min-height:420px;
-
-    width: 1900px;
-    height: 420px;
-
-    object-fit: cover;
-    position: absolute;
-
-    overflow:hidden;
-
-    overflow-x:hidden;
+    width: 100%;
+    height: auto;
     
 }
 .videotextcontaier {
