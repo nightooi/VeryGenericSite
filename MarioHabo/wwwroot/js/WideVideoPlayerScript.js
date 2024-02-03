@@ -51,17 +51,20 @@ $(function () {
                 }
             }, (parseFloat($(obj).attr("data-video-len")) - 2) * 1000);
         })
-    $(document).on("move-me", (event, nextVideo) => {
-        $(nextVideo).css("transition-duration", "0s");
-        //add css classes that would allow this to happen, set that class and then reset.
-        $(nextVideo).css("transform", "translateY(-2000px)");
+    $(document).on("move-me", (event, nextVideo, time) => {
+        console.log($(nextVideo).position());
+        var pos = 0;
+        if ((pos = $(nextVideo).position().left) > 0) {
+
+            $(nextVideo).css("transform", `translateX(-${pos}px)`);
+        }
     })
 })
 
 function VideoFadeout(video, nextVideo, time) {
 
         if (video.currentTime <= time) {
-            $(video).fadeOut(time)
+            $(video).fadeTo(time, 0);
             setTimeout(() => { $(video).removeAttr("autoplay") }, time);
         }
         VideoFadeIn(nextVideo, time);
@@ -71,10 +74,9 @@ function VideoFadeout(video, nextVideo, time) {
 
 function VideoFadeIn(nextVideo, time) {
 
-    $(document).trigger("move-me", event, nextVideo);
     $(nextVideo).attr("autoplay");
-    setTimeout(() => { }, time)
-    $(nextVideo).fadeIn(time);
+    $(nextVideo).fadeTo(time, 1);
+    $(document).trigger("move-me", nextVideo, time);
     PlayPromiseHandler(nextVideo.play());
     console.log($(nextVideo).attr("data-video-len") + ":::NEXTVIDEOLEN");
 }
