@@ -14,15 +14,10 @@ $(function(){
         let upState = 0;
         let currentHeight = 0;
 
-        container.on("vmousedown", (eventargs) => {
+        container.on("vmousedown",(eventargs)=>{
             selected = true;
             startCoords = eventargs.clientY;
-
-            $('body').css({
-                overflow: 'hidden',
-                height: '100%'
-            });
-
+            $(".layout>*").delegate('layout>*', 'touchmove', false);
             if (parseInt($(".footercontainer").css("bottom")) != -420) {
 
                 currentHeight = parseInt($(".footercontainer").css("bottom"));
@@ -32,12 +27,36 @@ $(function(){
                 console.log(upState + " ::bool");
             }
         })
+        
+        $(".layout>*").on("taphold", () => {
+            selected = false;
+            $(".footercontainer").css("transision-duration", "0.5s");
+            $(".footercontaiter").css("bottom", downPos);
+            $('layout>*').undelegate('.ui-content', 'touchmove', false);
+            currentHeight = 0;
+        })
+        $(".layout>*").on("swipe", () => {
+            selected = false;
+            $(".footercontainer").css("transition-duration", "0.5s");
+            $(".footercontainer").css("bottom", downPos);
+                
+            currentHeight = 0;
+            $('layout>*').undelegate('.ui-content', 'touchmove', false);
+        })
+        $(".layout>*").on("vmouseDown", () => {
+            $(".footercontainer").css("transition-duration", "0.5s");
+            $(".footercontainer").css("bottom", downPos);
 
-        $(document).on("vmousemove", (eventargs) => {
+            currentHeight = 0;
+            $('layout>*').undelegate('.ui-content', 'touchmove', false);
+        })
+
+        $(".footercontainer").on("vmousemove", (eventargs) => {
             if (selected) {
                 let scrollDistance = calcScrollHeight(startCoords, eventargs.clientY);
                 let input = 0;
                 if (upState) {
+                setTimeout(() => {
                     console.log(currentHeight + " :::CurrentHeight::upState")
                     input = (currentHeight + scrollDistance);
                     console.log(input + " ::input");
@@ -45,8 +64,11 @@ $(function(){
                         container.css("transition-duration", "0s");
                         container.css("bottom", `${parseInt(input)}px`)
                     }
+                    }, 200)
                 }
-                else {
+                else
+                {
+                setTimeout(() => {
                     console.log(currentHeight + "::currentHeightChecked");
                     currentHeight = -parsedDownPos;
                     input = 0 - (currentHeight - scrollDistance)
@@ -56,20 +78,16 @@ $(function(){
                         container.css("transition-duration", "0s");
                         container.css("bottom", `${parseInt(input)}px`);
                     }
+                    }, 200)
                 }
             }
         })
-
-
-        $(".footercontainer").on("tap", () => {
-            offset = 0;
-            $(".footercontainer").css("bottom", downPos);
-            upState = false;
+        $('.layout>*').on("scrollstart", () => {
             selected = false;
-            $('body', 'html').css({
-                height: "auto",
-                overflow: "auto"
-            })
+            $(".footercontainer").css("transition-duration", "0.5s");
+            $(".footercontainer").css("bottom", downPos);
+            $('layout>*').undelegate('.ui-content', 'touchmove', false);
+            currentHeight = 0;
         })
         $(document).on("tap", () => {
             offset = 0;
@@ -77,16 +95,12 @@ $(function(){
             $(".footercontainer").css("bottom", downPos);
             console.log(downPos + " ::downPos")
             selected = false;
-            $('body', 'html').css({
-                height: "auto",
-                overflow: "auto"
-            })
+            currentHeight = 0;
         })
     }
     else
     {
         $(".footercontainer").on("mouseenter", (event) => {
-
             if (window.matchMedia("(hover: hover").matches) {
                 $(".footercontainer").css("transition-duration", "0.73s");
                 hoverState = true;
@@ -106,6 +120,13 @@ $(function(){
     }
 })
 
+function yieldChildren(element) {
+    var i = 0;
+    while ($(element).children().length > i) {
+        yield($(element).children().toArray()[i]);
+        i++;
+    }
+ } 
 function normaliseString(obj) {
     parseFloat(obj);
     console.log(obj +" ::obj at normalize")

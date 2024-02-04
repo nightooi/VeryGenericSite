@@ -4,10 +4,10 @@ builder.Services.AddControllersWithViews();
 
 
 
-builder.Services.AddRazorPages()
+/*builder.Services.AddRazorPages()
    .AddRazorRuntimeCompilation();
 builder.Services.AddMvcCore()
-  .AddRazorRuntimeCompilation();
+  .AddRazorRuntimeCompilation();*/
 
 var app = builder.Build();
 // Add services to the container.

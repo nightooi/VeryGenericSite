@@ -54,8 +54,8 @@ $(function () {
     $(document).on("move-me", (event, nextVideo, time) => {
         console.log($(nextVideo).position());
         var pos = 0;
-        console.log($(nextVideo).parent().width().toPrecision() +":::precision width");
         if ((pos = $(nextVideo).position().left) > 0) {
+        console.log($(nextVideo).parent().width().toPrecision() +":::precision width");
 
             $(nextVideo).css("transform", `translateX(-${pos}px)`);
         }
