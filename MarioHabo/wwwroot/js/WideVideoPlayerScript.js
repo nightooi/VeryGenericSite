@@ -9,32 +9,22 @@ function PlayPromiseHandler(playPromise) {
     }
 }
 
+
 $(function () {
     let vidLen = document.getElementsByTagName('video').length
-    var k = 0;
     for (var i = 0; i < vidLen; i++) {
+        document.getElementsByTagName('video')[i].load();
+        var vid = $(document.getElementsByTagName('video')[i]);
+        vid.css("transform", `translateX(-${vid.position().left}px)`)
         document.getElementsByTagName('video')[i].addEventListener("loadedmetadata", (element) => {
+            
             $(element.target).attr("data-video-len", element.target.duration)
-            $(element.target).attr("video-metadataloaded", true);
-            if (element.target.duration == document.getElementsByTagName('video')[0].duration) {
-                $(element.target).trigger("LoopVideo", element.target);
-                k++;
+            if (element.target.duration == document.getElementsByTagName('video')[vidLen - 1].duration) {
+                $(document).trigger("LoopVideo", document.getElementsByTagName('video')[0]);
             }
         })
     }
 
-    $("video").each(
-        (index, element) => {
-            if (index == 0)
-            {
-                $(element).fadeIn();
-            }
-            else
-            {
-                $(element).fadeOut();
-            }
-        }
-    )
         $(document).on("LoopVideo", (event, obj) => {
             console.log($(obj).attr("data-video-len"))
             setTimeout(() => {
@@ -51,6 +41,7 @@ $(function () {
                 }
             }, (parseFloat($(obj).attr("data-video-len")) - 2) * 1000);
         })
+
     $(document).on("move-me", (event, nextVideo, time) => {
         console.log($(nextVideo).position());
         var pos = 0;
@@ -74,7 +65,7 @@ function VideoFadeout(video, nextVideo, time) {
 }
 
 function VideoFadeIn(nextVideo, time) {
-
+    Show(nextVideo);
     $(nextVideo).attr("autoplay");
     $(nextVideo).fadeTo(time, 1);
     $(document).trigger("move-me", nextVideo, time);
@@ -82,52 +73,14 @@ function VideoFadeIn(nextVideo, time) {
     console.log($(nextVideo).attr("data-video-len") + ":::NEXTVIDEOLEN");
 }
 
-function RunVideoLoop(vidLen, iterator) {
 
-        iterator++;
+function Show(video) {
 
-        if ((0 < iterator) && (iterator < $("video").length - 1))
-        {
-
-            //const vid = $("video")[iterator - 1];
-            //const nextVid = $("video")[iterator];
-            const vid = document.getElementsByTagName("video")[iterator - 1];
-            const nextVid = document.getElementsByTagName("video")[iterator];
-            //$(vid).fadeOut(2000);
-            //$($("video")[iterator]).fadeIn(2000);
-            //PlayPromiseHandler($("video")[iterator].play());
-             VideoFadeout(vid, nextVid, 2000);
-        }
-        else if (iterator == 0 && !isNaN(timeout))
-        {
-            //const vid = $("video")[$("video").length - 1];
-            //const nextVid = $("video")[iterator];
-            const vid = document.getElementsByTagName("video")[vidLen- 1];
-            const nextVid = document.getElementsByTagName("video")[iterator];
-            //$(vid).fadeOut(2000);
-            //$($("video")[iterator]).fadeIn(2000);
-            //$("video")[iterator].currentTime = 0;
-            //PlayPromiseHandler($("video")[iterator].play());
-            VideoFadeout(vid, nextVid, 2000);
-
-        }
-        else if (iterator == $("video").length - 1)
-        {
-            //const nextVid = document.getElementsByTagName("video")
-            //const vid = $("video")[$("video").length - 2];
-            const vid = document.getElementsByTagName("video")[vidLen-1];
-            const nextVid = document.getElementsByTagName("video")[0];
-            //$(vid).fadeOut(2000);
-            //$($("video")[iterator]).fadeIn(2000);
-            //$("video")[iterator].currentTime = 0;
-            //PlayPromiseHandler($("video")[iterator].play());
-            VideoFadeout(vid, nextVid, 2000);
-        }
+    if ($(video).css("display").match("none"))
+    {
+        $(video).fadeIn();
+    }
 }
-
-
-
-
 
 
 

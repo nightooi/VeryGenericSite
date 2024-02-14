@@ -4,5 +4,22 @@
 // Write your JavaScript code.
 
 $(function () {
-    //$('.carousel').carousel();
+    var reloadId;
+    $(window).load(
+        function(){
+            $("a").each(
+                (i, t) => {
+                    $(t).attr("data-ajax", "false");
+                }
+            )
+        }
+    )
+        
+    $(window).on("resize", () => {
+        clearTimeout(reloadId);
+        reloadId = setTimeout(() => {
+            window.location.href = window.location.href;
+        },250);
+    })
+   
 })

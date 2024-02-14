@@ -18,6 +18,10 @@ $custom-colors: ("borderblackie": #000000, "primfill": $primfill);
 
 $theme-colors: map-merge($theme-colors, $custom-colors);
 
+.ui-loader{
+    display:none;
+}
+
 @font-face{
     font-family: 'Righteous';
     src: url("../assets/Fonts/Righteous/Righteous-Regular.ttf");
@@ -312,9 +316,8 @@ and (-webkit-min-device-pixel-ratio: 2), (webkit-min-device-pixel-ratio: 2){
 .widevideocontainer {
     
 }
-
 video{
-
+    z-index: 0;
     width: 100%;
     height: auto;
     

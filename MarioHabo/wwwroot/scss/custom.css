@@ -10283,6 +10283,10 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+.ui-loader {
+  display: none;
+}
+
 @font-face {
   font-family: "Righteous";
   src: url("../assets/Fonts/Righteous/Righteous-Regular.ttf");
@@ -10522,6 +10526,7 @@ h3, .h3 {
   }
 }
 video {
+  z-index: 0;
   width: 100%;
   height: auto;
 }

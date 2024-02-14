@@ -17,7 +17,7 @@ $(function(){
         container.on("vmousedown",(eventargs)=>{
             selected = true;
             startCoords = eventargs.clientY;
-            $(".layout>*").delegate('layout>*', 'touchmove', false);
+            $(document).off('scroll');
             if (parseInt($(".footercontainer").css("bottom")) != -420) {
 
                 currentHeight = parseInt($(".footercontainer").css("bottom"));
@@ -32,24 +32,21 @@ $(function(){
             selected = false;
             $(".footercontainer").css("transision-duration", "0.5s");
             $(".footercontaiter").css("bottom", downPos);
-            $('layout>*').undelegate('.ui-content', 'touchmove', false);
             currentHeight = 0;
-        })
-        $(".layout>*").on("swipe", () => {
-            selected = false;
-            $(".footercontainer").css("transition-duration", "0.5s");
-            $(".footercontainer").css("bottom", downPos);
-                
-            currentHeight = 0;
-            $('layout>*').undelegate('.ui-content', 'touchmove', false);
         })
         $(".layout>*").on("vmouseDown", () => {
             $(".footercontainer").css("transition-duration", "0.5s");
             $(".footercontainer").css("bottom", downPos);
-
             currentHeight = 0;
-            $('layout>*').undelegate('.ui-content', 'touchmove', false);
         })
+        $(".layout>*").on("scrollstart", () => {
+            console.log("scroll:::fired");
+            selected = false;
+            $(".footercontainer").css("transition-duration", "0.5s");
+            $(".footercontainer").css("bottom", downPos);
+            currentHeight = 0;
+        })
+        
 
         $(".footercontainer").on("vmousemove", (eventargs) => {
             if (selected) {
@@ -64,7 +61,7 @@ $(function(){
                         container.css("transition-duration", "0s");
                         container.css("bottom", `${parseInt(input)}px`)
                     }
-                    }, 200)
+                }, 200)
                 }
                 else
                 {
@@ -82,13 +79,6 @@ $(function(){
                 }
             }
         })
-        $('.layout>*').on("scrollstart", () => {
-            selected = false;
-            $(".footercontainer").css("transition-duration", "0.5s");
-            $(".footercontainer").css("bottom", downPos);
-            $('layout>*').undelegate('.ui-content', 'touchmove', false);
-            currentHeight = 0;
-        })
         $(document).on("tap", () => {
             offset = 0;
             $(".footercontainer").css("transition-duration", "0.2s");
@@ -97,6 +87,7 @@ $(function(){
             selected = false;
             currentHeight = 0;
         })
+    
     }
     else
     {
