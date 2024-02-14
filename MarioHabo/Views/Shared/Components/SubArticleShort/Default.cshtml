@@ -6,14 +6,16 @@
 
 @model MarioHabo.Models.SubArticleShortModel
 
-<div clsas="container w-75 h-25">
-    <div class="flex-column bg-white bg-opacity-75 me-5 ms-5">
-        <div class="flex-row justify-self-center"> 
-            <h3 class="text-center">@Model.Article[0] Todo: add overlays to all images, convert some to cards</h3>
-            <h4 class="text-center"> Add some more cards and do some javascript magic to make these dispappear and reappear rearranged </h4>
-            <p class="ms-5"> in a better world there would be more cards so they'd have to be filtered/looped, in the individuall cards below this add some sort 
-                of a overlay on hover/tap which would redirect to something... system related, either to the reference page of this individual job or like request worker page, 
-                Idea: worker page showcase some of the things the current worker has done, pulls resources from references page, pics etc  </p>
+<class class="container w-100 h-25">
+    <div class="column bg-white bg-opacity-75 me-5 ms-5 h-25">
+        <div class="card text-bg-dark">
+            <img src="@Model.ImgPaths[0]" class="card-img" style="width:100%; height:25em; object-fit: cover;"/>
+                <div class="card-img-overlay">
+                    <div class="flex-column d-flex h-100 justify-content-end">
+                        <div class="card-title">@Model.Article[0]</div>
+                        <div class="card-text">@Model.Article[1]</div>
+                    </div>
+            </div>
         </div>
 
         <div class="d-flex justify-content-around bg-white bg-opacity-50">
@@ -23,9 +25,7 @@
                     int k = 0;
                     if(Model.ImgCaption != null)
                     {
-
                         a = Model.ImgCaption[0].ImgIndex ?? -1;
-
                     }
                     else
                     {
@@ -102,5 +102,4 @@
                  }
             </div>
         </div>
-    </div>
 </div>
