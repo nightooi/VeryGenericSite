@@ -1,4 +1,6 @@
-﻿@using MarioHabo.Models;
+﻿@page
+
+@using MarioHabo.Models;
 @using Microsoft.AspNetCore;
 @using Microsoft.AspNetCore.Html
 @using Microsoft.AspNetCore.Mvc;
@@ -6,26 +8,17 @@
 
 @model MarioHabo.Models.SubArticleShortModel
 
-<class class="container w-100 h-25">
-    <div class="column bg-white bg-opacity-75 me-5 ms-5 h-25">
-        <div class="card text-bg-dark">
-            <img src="@Model.ImgPaths[0]" class="card-img" style="width:100%; height:25em; object-fit: cover;"/>
-                <div class="card-img-overlay">
-                    <div class="flex-column d-flex h-100 justify-content-end">
-                        <div class="card-title">@Model.Article[0]</div>
-                        <div class="card-text">@Model.Article[1]</div>
-                    </div>
-            </div>
-        </div>
+    <div class="column bg-white bg-opacity-75 mb-lg-2 mt-lg-3 mt-md-2 ms-3 me-3 h-25">
 
         <div class="d-flex justify-content-around bg-white bg-opacity-50">
             <div class="row mb-3">
                 @{
                     int a;
                     int k = 0;
-                    if(Model.ImgCaption != null)
+                    if(Model.ImgCaption.Length > 0)
                     {
                         a = Model.ImgCaption[0].ImgIndex ?? -1;
+
                     }
                     else
                     {
@@ -33,27 +26,30 @@
                     }
                     for(int i=0; i<Model.ImgPaths.Length; i++)
                     {
-                        if (a >= 0 && (i == a))
+                        if (a > 0 && (i == a))
                         {
-                            <div class="col d-flex bg-white bg-opacity-75 me-3 ms-3">
 
                                     @if (Model.ImgCaption[k].SubArticle != null)
                                     {
                                         @if (i % 4 == 0)
                                         {
-                                            <div class="flex-column border rounded shadow me-3 ms-3 mt-3">
-                                                <figure rightBound="true" hastext="true" subtext="@Model.ImgCaption[k].ImgCaption"  
-                                                index="@Model.ImgCaption[k].ImgIndex" src="@Model.ImgPaths">                
-                                                </figure>
-                                                <p>@Model.ImgCaption[k].SubArticle</p>                                              
-                                            </div>
+
+                                             <gsfigure 
+                                             gs-src="@Model.ImgPaths[k]" 
+                                             gs-caption="@Model.ImgCaption[k].ImgCaption"
+                                             gs-article="@Model.ImgCaption[k].SubArticle"
+                                             gs-top="false"
+                                             gs-right="false"
+                                             gs-text-end="false"
+                                             gs-capupper="false"></gsfigure>
+                                             
                                         }
                                         else if( i%4 == 1)
                                         {
-                                           <div class="flex-column">
+                                            <div class="col bg-white me-2">
                                                 <p>@Model.ImgCaption[k].SubArticle</p>
                                                 <figure class="figure">
-                                                    <img src="@Model.ImgPaths[(int)Model.ImgCaption[k].ImgIndex]" class="img-fluid"/>
+                                                    <img src="@Model.ImgPaths[(int)Model.ImgCaption[k].ImgIndex]" class="img-fluid float-start w-100 h-100" style="object-fit: contain;"/>
                                                 </figure>                                                                           
                                             </div>
                                         }
@@ -70,7 +66,6 @@
                                         }
                                         else if(i%4 == 3)
                                         {
-                                           
                                             <gsfigure
                                             gs-src="@Model.ImgPaths[k]"
                                             gs-caption="@Model.ImgCaption[k].ImgCaption"
@@ -79,27 +74,27 @@
                                             gs-right=false
                                             gs-capupper=false 
                                             gs-text-start=true></gsfigure>
+                                            
                                         }
                                     }
-                                </div>
                             k = (k+1 < Model.ImgCaption.Length) ? ++k : k;
                             a = ((int)Model.ImgCaption[k].ImgIndex < Model.ImgPaths.Length) ? (int)Model.ImgCaption[k].ImgIndex : a;
                         }
                         else
                         {
-                            <div class="col bg-white bg-opacity-75 me-3 ms-3">
-                               <div class="flex-row mt-3">
+                            <div class="col bg-white mt-2 me-2">
+                               <div class="flex-col mt-3">
                                 @*the float variable needs to be rethought. again context dependent on
                                         where the image ends up living. Also the text alignment in the 
                                         paragraph too.*@
                                 @*ill need some extra logic too set the propper article too the image*@
-                                    <img src="@Model.ImgPaths[i]" alt="..OOps" class="rounded-2 float-end w-50 h-50 img-fluid ms-2"/>
+                                    <img src="@Model.ImgPaths[i]" alt="..OOps" class="rounded-2 float-start w-100 h-100 me-2 img-fluid"/>
                                     <p>@Model.Article[1]</p>
                                 </div>
                             </div>
                         }
                    }
                  }
-            </div>
         </div>
+</div>
 </div>

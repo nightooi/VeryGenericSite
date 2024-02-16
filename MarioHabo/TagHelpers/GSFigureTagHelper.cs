@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.ActionConstraints;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc.TagHelpers;
 using Microsoft.AspNetCore.Razor.Language.Intermediate;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using Microsoft.AspNetCore.Routing.Constraints;
@@ -17,6 +18,7 @@ using System.CodeDom;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq.Expressions;
 using System.Text;
+using System.Text.Encodings.Web;
 
 namespace MarioHabo.TagHelpers
 {
@@ -32,9 +34,20 @@ namespace MarioHabo.TagHelpers
         public Dictionary<string, object> Attributes { get; set; } = new Dictionary<string, object>();
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
+            
             TagBuilder outer = new("a");
             TagBuilder inner = new("a");
+            output.TagName = "div";
+            output.TagMode = TagMode.StartTagAndEndTag;
+            output.AddClass("col", HtmlEncoder.Default);
+            output.AddClass("bg-white", HtmlEncoder.Default);
+            output.AddClass("me-2", HtmlEncoder.Default);
+            output.AddClass("mt-lg-2", HtmlEncoder.Default);
+            output.AddClass("mt-md-3", HtmlEncoder.Default);
+            output.AddClass("mt-sm-3", HtmlEncoder.Default);
             output.Content.AppendHtml(BuildTag(ref outer,in inner, TagBuilderDef.undefined));
+
+            
             base.Process(context, output);
         }
         bool Conditionals(string key, object? value)
@@ -114,19 +127,19 @@ namespace MarioHabo.TagHelpers
                     StringBuilder classes = new StringBuilder();
                     if(Conditionals("top", Attributes["top"]))
                     {
-                        classes.Append("gs-top");
+                        classes.Append(" gs-top ");
                     }
                     else 
                     {
-                        classes.Append("gs-bottom");
+                        classes.Append(" gs-bottom ");
                     }
                     if(Conditionals("right", Attributes["right"]))
                     {
-                        classes.Append(" gs-right");
+                        classes.Append(" gs-right ");
                     }
                     else
                     {
-                        classes.Append(" gs-left");
+                        classes.Append(" gs-left ");
                     }
                     BuildTag(ref surrounding, new TagBuilder("div"), TagBuilderDef.HasblockWrapper, classes.ToString());
                     surrounding.InnerHtml.AppendHtml(newTag.RenderEndTag());
@@ -179,6 +192,11 @@ namespace MarioHabo.TagHelpers
                     foreach (var attrib in this.Attributes.Keys.Where((x)=> x.Contains("text")))
                     {
                         if(Conditionals(attrib, this.Attributes[attrib]))
+                        {
+                            BuildTag(ref surrounding, new("p"), TagBuilderDef.HasCaption, attrib);
+                            surrounding.InnerHtml.AppendHtml(newTag.RenderEndTag());
+                        }
+                        else
                         {
                             BuildTag(ref surrounding, new("p"), TagBuilderDef.HasCaption, attrib);
                             surrounding.InnerHtml.AppendHtml(newTag.RenderEndTag());

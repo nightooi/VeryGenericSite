@@ -11,19 +11,22 @@ namespace MarioHabo.Controllers
             var s = Directory.GetFiles(Directory.GetCurrentDirectory() + "\\wwwroot\\assets\\Images", "*.jpg");
             ArticleModelEnumerated[] mos = Populate(s).ToArray();
             ArticleIntroductoryModel model = new ArticleIntroductoryModel(mos);
-            string[] some = this.PopulateString(s, 5).ToArray();
+            string[] some = this.PopulateString(s, 8).ToArray();
             SubArticleShortModel mod = new SubArticleShortModel(
-                new[] { "SomeHeader", "Lorem ipsum dolor sit amet,orem ipsum dolor " +
+                new[]{ "SomeHeader", "Lorem ipsum dolor sit amet,orem ipsum dolor " +
                 " sit amet," },
                 some,
-                new[] { new SubArticleShortModel.ImgCaptions(1, "Lorem ipsium dolor"," consectetur adipiscin elit, sed do eiusmod tempor" ),
+                new[] { 
+                    new SubArticleShortModel.ImgCaptions(1, "Lorem ipsium dolor"," consectetur adipiscin elit, sed do eiusmod tempor" ),
                     new SubArticleShortModel.ImgCaptions(2, "Lorem ipsium", " consectetur adipiscin elit," +
                     " sed do eiusmod tempor consectetur adipiscin elit, sed do eiusmod temporonsectetur " +
                     "adipiscin elit, sed do eiusmod tem"),
                 new SubArticleShortModel.ImgCaptions(3,"Lorem Ipsum dolor sit amet",
                 "Lorem ipsum dolor sit amet," +
-                " consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore" +
-                " culpa qui officia deserunt mollit anim id est laborum.")});
+                " culpa qui officia deserunt mollit anim id est laborum."),
+                new SubArticleShortModel.ImgCaptions(4, "Lorem something else", 
+                "someElseSomeSome"),
+                new SubArticleShortModel.ImgCaptions(6, "LoremIpsum else", "make sure that the other party is bought in")});
 
 
             MeetTeamCompositeModel modelH = new MeetTeamCompositeModel
@@ -40,7 +43,22 @@ namespace MarioHabo.Controllers
             Console.WriteLine(mod.ImgPaths.Length);
             Console.WriteLine(modelH.SubShort.Article[0]);
 
+            string[] someOther = PopulateString(s, 3).ToArray();
 
+            var PanoModel = new WidePanoramaImageModel(someOther, "MBHAB",
+                new SingleImageArticleBundleModel[]
+                {
+                    new SingleImageArticleBundleModel("Lorem Ipsum","Lorem Ipsum dolor", "Lorem"),
+                    new SingleImageArticleBundleModel("Lorem", "LoremIpsum Dolor Amet", "Ipsum", 3),
+                    new SingleImageArticleBundleModel("Lorem Lorem", "Ipsum Dolor Amet",null, 2)
+                },
+                new SingleImageArticleBundleModel[]
+                {
+                    new SingleImageArticleBundleModel("Lorem Ipsum","Lorem Ipsum dolor", "Lorem"),
+                    new SingleImageArticleBundleModel("Lorem", "LoremIpsum Dolor Amet", "Ipsum", 3),
+                    new SingleImageArticleBundleModel("Lorem Lorem", "Ipsum Dolor Amet",null, 2)
+                }
+                );
             return View(modelH);
         }
 
@@ -69,8 +87,6 @@ namespace MarioHabo.Controllers
         }
 
         private IEnumerable<string> PopulateString(string[] s, int imgAmount)
-
-
         {
 
             string[] copy = new string[imgAmount]; 

@@ -6,6 +6,10 @@
     /// </summary>
     public class ComplexAtricleModel : SimpleArticleModel
     {
+        public ComplexAtricleModel(string? Header, string? SubHeader, string? Article) : base(Header, SubHeader, Article)
+        {
+
+        }
 
         public int? Images { get; set; }
         public int? SubHeaders { get; set; }
