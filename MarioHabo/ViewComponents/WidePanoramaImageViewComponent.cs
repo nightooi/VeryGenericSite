@@ -7,10 +7,15 @@ namespace MarioHabo.ViewComponents
 {
     public class WidePanoramaImageViewComponent : ViewComponent
     {
-
-        public async Task<IViewComponentResult> InvokeAsync(string componentName, WidePanoramaImageModel? componentmodel)
+        public WidePanoramaImageModel Model { get; set; }
+        public async Task<IViewComponentResult> InvokeAsync(WidePanoramaImageModel componentmodel)
         {
-            return View(componentmodel);
+            if(componentmodel is null)
+            {
+                Console.WriteLine($"{nameof(componentmodel)} is NULL!!");
+            }
+            Model = this.ViewBag.PanoModel;
+            return View(Model);
         }
 
     }

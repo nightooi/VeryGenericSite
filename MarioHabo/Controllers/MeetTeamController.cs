@@ -59,6 +59,8 @@ namespace MarioHabo.Controllers
                     new SingleImageArticleBundleModel("Lorem Lorem", "Ipsum Dolor Amet",null, 2)
                 }
                 );
+
+            ViewBag.PanoModel = PanoModel;
             return View(modelH);
         }
 
