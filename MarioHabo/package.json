@@ -18,5 +18,8 @@
   "homepage": "https://github.com/nightooi/MarioHabo#readme",
   "devDependencies": {
     "eslint": "^8.56.0"
+  },
+  "dependencies": {
+    "eslint-config-jquery": "^3.0.2"
   }
 }
