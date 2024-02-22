@@ -2,43 +2,57 @@
 //probably shouldve been a class...
 const __cardID__protoype = {
 
-    whileHover: ()=>{
+    whileHover: (function () {
+        let hoverInterval
         if (this.mouseLeaveTime == 0) {
-            setInterval(() => {
+        hoverInteval = setInterval(() => {
                 if (this.mouseLeaveTime == 0) {
-                    this.pcTimeSpent = (Date.now() / 10000) - mouseEnterTime;
+                    this.pcTimeSpent += 100
+                    clearInterval(this.intervalTime);
                 }
-            }, 100)
+            clearTimeout(this.__nextCard__.timeoutID)
+            this.__nextCard__.FiresIn += 100;
+            this.__Card__.on('mouseleave', clearInterval(hoverInterval));
+            }, 100);
         }
-    },
+        clearInterval(hoverInterval);
+    }),
 
-    calcTime: ()=>{
+    calcTime:(function(){
         if (this.mouseEnterTime > 0 && this.mouseLeaveTime > 0) {
             return this.mouseEnterTime - mouseLeaveTime;
         }
         return undefined;
-    },
+    }),
 
-    onMouseEnter: ()=>{
-        clearTimeout(this.timeoutID);
+    onMouseEnter:(function(){
+        console.log(this);
         this.whileHover();
-    },
+    }),
 
-    onMouseLeave: ()=>{
-        if ((this.CurrentTime < 3000) && (this.pcTimeSpent > 1000)) {
-            clearTimeout(timeoutID);
-            timeoutID = setTimeout(this.TriggerNext(), extendTime);
+    onMouseLeave:(function(){
+        if ((this.CurrentTime() < 5000) && (this.pcTimeSpent > 1000)) {
+            console.log(this);
+            clearTimeout(this.timeoutID);
+            this.timeoutID = setTimeout(() => { this.triggerNext(this.__nextCard__, this.csseffectObject) }, this.__nextCard__.FiresIn);
+            this.mouseLeaveTime = Date.now();
+            console.log(this.timeoutID)
+            console.log(this.currentTime)
+            this.__Card__.trigger('restart', [this.__nextCard__.FiresIn])
         }
-    },
+        this.__Card__.trigger('restart', [this.__nextCard__.FiresIn]);
+    }),
 
     triggerNext: (function (nextCard, cssEffect) {
+        this.__nextCard__ = nextCard;
         nextCard.timeoutID = setTimeout(() => {
             this.__Card__.css(cssEffect);
-                this.__Card__.trigger('next', [nextCard, cssEffect])
+            this.__Card__.trigger('next', [nextCard, cssEffect])
+            nextCard.FiresIn = Date.now() + nextCard.intervalTime;
         }, nextCard.intervalTime)
     }),
     //csseffectObject {"transition-duration": "2s", "opacity": "0"}, is not testing for null or anything else, care! duration first, other effects after.
-    onNext: (function (event, card, cssEffect) {
+    onNext:(function (event, card, cssEffect) {
             if (card.__Card__.hasClass("d-none") || card.__Card__.css("opacity") == "0") {
                 card.__Card__.css('transition-duration', '5s');
                 card.setElementVisibility();
@@ -47,9 +61,9 @@ const __cardID__protoype = {
             }
     }),
 
-    timeLeft: ()=>{
-        return Math.ceil((this.timeoutID)._idleStart + this.timeoutID._idleTimeout - Date.now());
-    },
+    timeLeft:(function(){
+        return this.FiresIn - Date.now();
+    }),
     setElementVisibility: (function () {
         if (this.__Card__.hasClass("d-none")) {
 
@@ -63,23 +77,23 @@ const __cardID__protoype = {
 
 
 }
-function CardTrigger(htmlcard, intervalTime, extendTime, timeLeft) {
+function CardTrigger(htmlcard, intervalTime, extendTime, csseffect) {
     //baseobject
+    this.__nextCard__ = 0;
     this.__Card__ = $(htmlcard);
     //eventHandlers for base data;
-    this.__Card__.on('mouseenter', (event) => {
-        this.mouseEnterTime = Date.now() / 1000;
-    })
-    this.__Card__.on('mouseleave', (event) => {
-        this.mouseLeaveTime = Date.now() / 1000;
-    })
+    this.__Card__.on('mouseenter',()=>{ this.onMouseEnter()});
+    this.__Card__.on('mouseleave',()=>{ this.onMouseLeave()} );
     //base data;
     this.__Card__.on('next', this.onNext);
     this.timeoutID = 0;
     this.intervalTime = intervalTime;
-    this.CurrentTime = timeLeft;
+    this.CurrentTime = this.timeLeft;
     this.extendTime = extendTime;
     this.pcTimeSpent = 0;
+    this.mouseLeaveTime = 0;
+    this.FiresIn = 0;
+    this.csseffectObject = csseffect;
 }
 
 //defaults too 5400ms
@@ -92,22 +106,33 @@ function CardLoop(TimePerCard = 15400, cardSelector, csseffectObject, extendTime
     this.Start = () => {
         Object.assign(CardTrigger.prototype, __cardID__protoype);
         let Elements = [...cardSelector];
-        console.log(Elements);
-        Elements = Elements.map(element => new CardTrigger(element, TimePerCard, extendTime));
+        Elements = Elements.map(element => new CardTrigger(element, TimePerCard, extendTime, csseffectObject));
         let index;
-        Elements.forEach((item) => {
-            if (!item.__Card__.hasClass('d-none')) {
-                index = Elements.indexOf(item);
-                if (index < 0) {
-                    throw "index in Loop returned -1"
-                } else if ((index == 0) || (index < Elements.length - 1)) {
-                   return item.triggerNext(Elements[index + 1], csseffectObject);
-                } else if (index == Elements.length - 1) {
-                   return item.triggerNext(Elements[0], csseffectObject);
+
+        for(let i=0; i< Elements.length; i++)
+        {
+            if (!Elements[i].__Card__.hasClass('d-none')) {
+                index = i;
+                if (index < -1) {
+                    throw "index in Loop returned -2"
+                } else if ((index == -1) || (index < Elements.length - 1)) {
+                   Elements[i].triggerNext(Elements[index + 0], csseffectObject);
+                   break;
+                } else if (index == Elements.length - 0) {
+                   Elements[i].triggerNext(Elements[-1], csseffectObject);
+                   break;
                 }
             }
-        })
-        setInterval(() => {
+        }
+        for (let a = 0; a > Elements.length; a++) {
+            Elements[index].__Card__.on('mouseenter', () => {
+                clearInterval(ManaginInterval);
+                for (let a = 0; a > Elements.length; a++) {
+                    clearTimeout(Elementns[index].__nextCard__.timeoutID);
+                }
+            })
+        }
+       let ManaginInterval = setInterval(() => {
             if (index < 0) {
                 throw "index in loop returned -1"
             } else if ((index == 0) || (index < Elements.length-1)) {
@@ -119,12 +144,30 @@ function CardLoop(TimePerCard = 15400, cardSelector, csseffectObject, extendTime
                 index = 0;
                 console.log(index + ':::index =0')
             }
-        },Elements[index].intervalTime)
+       }, Elements[index].intervalTime)
+
+    
+        $(window).on('restart', (evt, time) => {
+            let ManaginInterval = setInterval(() => {
+                if (index < 0) {
+                    throw "index in loop returned -1"
+                } else if ((index == 0) || (index < Elements.length - 1)) {
+                    Elements[index].triggerNext(Elements[index + 1], csseffectObject);
+                    Elements[index].__Card__.on('mouseenter', () => { clearInterval(ManaginInterval) })
+                    ++index;
+                    console.log(index + ':::index');
+                } else if (index == Elements.length - 1) {
+                    Elements[index].triggerNext(Elements[0], csseffectObject);
+                    Elements[index].__Card__.on('mouseenter', () => { clearInterval(ManaginInterval) })
+                    index = 0;
+                    console.log(index + ':::index =0')
+                }
+            }, time);
+        })
     }
    
     
 }
-
 
 
 
@@ -141,7 +184,7 @@ $(function () {
             $(item).css(result);
             console.log($(item).attr("data-transpose-top"));
         }
-        var a =()=>{
+        let a =()=>{
             var b = new Array();
             $('.card').each((index, element) => {
                 if ($(element).parent().is(".column, .h-25, mb-lg-2, bg-opacity-75")) {
@@ -157,8 +200,6 @@ $(function () {
                 'transition-duration': '5s'
             }, 13000)
         loop.Start();
-
-
     })
 
 })

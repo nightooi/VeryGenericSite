@@ -17,9 +17,6 @@
 
                 console.log(header.innerText + " :header trimmed");
                 console.log(tex.innerText + " :text not trimmed");
-
-
-
                 $(".carouseltextcontainer").trigger("onPicEventTrigger", [header.innerText.replace(tex.innerText, ""), tex.innerText, stat]);
             }
         }
@@ -107,7 +104,7 @@ $(function () {
     const hiddeninputs = $('input[type=hidden]');
     var increaseOnImgNumb = 0;
 
-    $(".mycarouselnextbutton").click(() => {
+    $(".mycarouselnextbutton").on('click',() => {
 
 
         increaseOnImgNumb = 0;
@@ -154,7 +151,7 @@ $(function () {
         changeTexContents(hiddeninputs, state, increaseOnImgNumb);
 
     })
-    $(".mycarouselprevbutton").click(() => {
+    $(".mycarouselprevbutton").on('click',() => {
 
 
         if (state == 0) {
@@ -240,7 +237,7 @@ $(function () {
     const translateXAmount = 35;
     var timeoutresetdots;
 
-    $(".carouseltextcontainer").hover(() => {
+    $(".carouseltextcontainer").on('mouseenter',() => {
         var translatedots = (visiblearea * 0.35);
         circlescont.css("transform", `translateX(-${translatedots}px) scale(0.40)`);
         if (timeoutresetdots != null) {
@@ -255,7 +252,7 @@ $(function () {
 
     var leavetimeoutdotscont;
 
-    $(".carouseltextcontainer").mouseleave((e) => {
+    $(".carouseltextcontainer").on('mouseleave',(e) => {
         leavetimeoutdotscont = setTimeout(() => {
 
             for (i = 0; i < $(".mycarouselnextbutton").children().length; i++) {
@@ -267,7 +264,6 @@ $(function () {
                     e.stopImmediatePropagation();
                 }
                 else if (e.relatedTarget.nodeName == "SPAN") {
-
                     e.stopImmediatePropagation();
                 }
                 else {
@@ -284,7 +280,7 @@ $(function () {
 
         }, 1000)
     })
-    $(".mycarouselnextbutton").hover((e) => {
+    $(".mycarouselnextbutton").on('mouseenter',(e) => {
         $(".carouseltextcontainer").trigger('mouseover', e);
 
     })

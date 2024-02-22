@@ -10471,8 +10471,8 @@ h3, .h3 {
 
 .caroudotstoggle {
   fill: white;
-  filter: drop-shadow(5px 5px 50px rgb(255, 255, 255));
-  transform: scale(1.5);
+  filter: drop-shadow(15px 15px 150px rgb(255, 255, 255));
+  transform: scale(2.5);
 }
 
 @media only screen and (min-width: 1440) and (min-height: 841) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 1), (webkit-min-device-pixel-ratio: 1) {
