@@ -1,0 +1,47 @@
+﻿@using VeryGenericSite.ViewComponents;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - MarioHabo</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="~/MarioHabo.styles.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="~/scss/custom.css" asp-append-version="true" /> 
+     
+</head>
+<body>
+        <header>
+            @await Component.InvokeAsync("Header")
+        </header>
+    <div class="d-block layout">
+            @await Component.InvokeAsync("ExtendedMenu")
+            @RenderBody()
+    </div>
+    
+
+    <footer class="border-top text-muted sticky-bottom footercontainer">
+        @await Component.InvokeAsync("Footer")
+    </footer>
+    
+    <script src="~/lib/jquery2.1.4/jquery.js"></script>
+    <script src="~/lib/jquery-mobile/jquery.mobile.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/ExtendedMenuScript.js" asp-append-version="true"></script>
+    <script src="~/js/footerMobile.js" asp-append-version="true"></script>
+
+    @{
+        var taskWide = RenderSectionAsync("wideComponentsScripts", required: false);
+        var taskCarousel =  RenderSectionAsync("carouselscripts", required: false);
+        if(taskCarousel.IsCompletedSuccessfully)
+        {
+            taskCarousel.Dispose();
+        }
+        if(taskWide.IsCompletedSuccessfully)
+        {
+            taskWide.Dispose();
+        }
+    }
+</body>
+</html>

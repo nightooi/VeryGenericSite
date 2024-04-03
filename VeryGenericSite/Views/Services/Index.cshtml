@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewData["Title"] = "Services";
+}
+@using VeryGenericSite.Models;
+@*@Html.RenderComponentAsync("ImageTextDisplay")*@
+@model CarouselItemModel
+@await Component.InvokeAsync("ImageTextDisplay", new{ models = Model })
+
+@section carouselscripts{
+
+    <script src="~/js/CarouselScript.js" asp-append-version="true"></script>
+}

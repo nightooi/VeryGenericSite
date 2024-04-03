@@ -1,0 +1,83 @@
+﻿@using Microsoft.AspNetCore;
+@using Microsoft.AspNetCore.Html;
+@using Microsoft.AspNetCore.Mvc;
+@using VeryGenericSite.Models;
+@model ContactFormModel
+
+
+    <div class="container w-100 h-100">
+        <div class="">
+            <div class="d-block">this should be some controller that displays some of the things that the user just browsed through
+                maybe addint something on the side is the way to go, we'll see.
+            </div>
+            <div class="container align-items-center">
+                <div class="row">
+                    <div class="col">
+                        <div class="column">
+                        <div class="d-grid h-100">
+                            <div class="flex-column d-flex h-100">
+                                <div class="row">
+                                    <header>You can find us here!</header>
+                                    <p>
+                                        Insert Address to check the price of a evaluation!
+                                            <span>TODO:: EXTRACT MAP TO A SEPERATE COMPONENT</span>
+                                    </p> 
+                                    </div>
+                                                            </div>
+                        </div>
+                            <div class="d-block align-content-around">
+                                <div class="map">
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d19983.848957469145!2d1.3507571347656318!3d51.23784260000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47deafe6a81df997%3A0xf64385469f585a10!2sBoonies!5e0!3m2!1sen!2sse!4v1709767544078!5m2!1sen!2sse" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col align-items-around justify-content-around flex-wrap">
+                                <div class="row w-100">
+                                    <p>We try to reach out to as many as possible, your request will be placed in a priority que where customers closer to our location will be given a higer priority. Insert your address to check the price for a evaluation visit.</p>
+                                </div>
+                        <div class="row h-75 justify-content-around align-items-center">
+                            <div class="col-ms-3 justify-content-around">
+                                <form asp-controller="Contact"  asp-antiforgery="true" 
+                                asp-action="VisitationRequest" method="post" class="">
+                                <div asp-validation-summary="ModelOnly"></div>
+                                Your Given Name:
+                                    <input asp-for="Name"></input>
+                                    <div asp-validation-for="Name"></div>
+                                Email address which will be our point of contact to you:
+                                    <input asp-for="EmailAddress"></input>
+                                    <div asp-validation-for="Email"></div>
+                                The address at which the work will take place:
+                                    <input asp-for="StreetAddress"></input>
+                                    <div asp-validation-for="StreetAddress"></div>
+                                Telephone number:
+                                    <input asp-for="PhoneNumber"></input>
+                                    <div asp-validation-for="PhoneNumber"></div>
+                                PostalCode:
+                                    <input asp-for="ZipCode"></input>
+                                    <div asp-validation-for="ZipCode"></div>
+                                City:
+                                    <input asp-for="City"></input>
+                                    <div asp-validation-for="City"></div>
+                                If You're in the US or Australia:
+                                    <input asp-for="State"></input>
+                                    <div asp-validation-for="State"></div>
+                                Country:
+                                    <input asp-for="Country"></input>
+                                    <div asp-validation-for="Country"></div>
+                                Preffered Date:
+                                <b>Dates set further into the future have a higher chance of being confirmed.</b>
+                                    <input asp-for="PreferredDate"></input>
+                                    <div asp-validation-for="DateTime"></div>
+                                    <button formaction="VisitationRequest">Submit Request</button>
+                                </form>
+                            </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="d-block" style="content:' '; height: 1500px; "></div>

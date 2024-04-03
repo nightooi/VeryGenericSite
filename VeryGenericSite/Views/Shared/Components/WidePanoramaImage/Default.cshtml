@@ -1,0 +1,51 @@
+﻿@using Microsoft.AspNetCore;
+@using Microsoft.AspNetCore.Mvc;
+@using Microsoft.AspNetCore.Html;
+@using VeryGenericSite.Models;
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model VeryGenericSite.Models.WidePanoramaImageModel;
+@{
+    int j = 0;
+    @foreach (var i in Model.RequestImages)
+    {
+           <gsdiv class="card text-white" style="max-width: 100%; max-height: 25em; height:25em;" wph-hidden="@j">
+            <img src="@i" class="img-fluid card-img" style="width: 100% \9; width:100%; max-width:100%; height: 100%; object-fit: cover;" />
+            <div class="card-img-overlay m-0 p-0">
+                <div class="flex-column m-0 p-0 d-flex h-100 justify-content-end" style="background:
+                          linear-gradient(rgba(1,1,1,0.1) 0 70%, rgba(1,1,1,1))">
+                    @if (Model.ArticleBundle is not null && j == Model.ArticleBundle[j].ImageTied)
+                    {
+                        <h3 class="card-title ps-lg-2 ps-md-2">@(@Model.ArticleBundle[j].Header ?? "")</h3>
+                        if (Model.ArticleBundle[j].SubHeader is not null)
+                        {
+                            <h5 class="ps-lg-2 ps-md-2">@Model.ArticleBundle[j].SubHeader</h5>
+                        }
+                        <p class="card-text ps-lg-2 ps-md-1 pb-lg-2 ps-md-1">@(Model.ArticleBundle[j].Article ?? "todo: move this out into a model of its own, turn the lower stuff into cards, add the watermark in one corner, add buttons for redirect to the lower articles, add maps on images for redirects to articles, find a way to add a row when in pc view, and a to space the cards in planly laterally when in mobile.") </p>
+                    }
+                </div>
+                @if (Model.OnHoverArticleBundle is not null)
+                {
+                    @if (Model.OnHoverArticleBundle.Length > j && Model.OnHoverArticleBundle[j].ImageTied == j)
+                    {
+                        <div class="d-flex w-50 h-100 position-absolute top-0 end-0 justify-content-end"
+                             style="background: linear-gradient(90deg, rgba(1,1,1,0.005) 0 20%, rgba(1,1,1,1))">
+                             <div class="flex-column pe-3">
+                                <h3 class="text-end">@(Model.OnHoverArticleBundle[j].Header ?? "")</h3>
+                                <h5 class="text-end">@(Model.OnHoverArticleBundle[j].SubHeader ?? "")</h5>
+                                <p class="text-end">@(Model.OnHoverArticleBundle[j].Article ?? "")</p>
+                            </div>
+                        </div>
+                    }
+                   
+                }
+            </div>
+        </gsdiv>
+        j++;
+    }
+}

@@ -1,0 +1,30 @@
+﻿@using VeryGenericSite.Models
+
+@model BackgroundOverlayVideoPlayerModel
+    <div class="row g-0 d-flex flex-nowrap">
+    @{int iter = 0;
+        @foreach (var i in Model.Video!)
+        {
+            if(iter == 0)
+            {
+                <video src="@i.VideoPath" autoplay muted autobuffer playsinline loop class="ps-0 pe-0" style="position: relative; left: 0px;">
+                </video>
+            }
+            else
+            {
+                <video src="@i.VideoPath" autoplay muted autobuffer playsinline loop class="ps-0 pe-0"
+                style="position: absolute; left:0px;">
+                </video>
+            }
+                ++iter;
+        }
+    }
+    </div>
+
+
+           
+                                   
+           
+                                   
+                       
+              

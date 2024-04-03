@@ -1,0 +1,31 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "provider": "jsdelivr",
+      "library": "bootstrap@5.2.3",
+      "destination": "wwwroot/bootstrap/"
+    },
+    {
+      "provider": "filesystem",
+      "library": "c:/users/bartek/.nuget/packages/bootstrap.sass/",
+      "destination": "wwwroot/lib/"
+    },
+    {
+      "provider": "cdnjs",
+      "library": "jquery-mobile@1.4.5",
+      "destination": "wwwroot/lib/jquery-mobile/"
+    },
+    {
+      "provider": "cdnjs",
+      "library": "jquery@2.1.4",
+      "destination": "wwwroot/lib/jquery2.1.4"
+    },
+    {
+      "provider": "filesystem",
+      "library": "node_modules/MD5",
+      "destination": "wwwroot/lib/MD5"
+    }
+  ]
+}

@@ -1,0 +1,103 @@
+﻿@using Microsoft.AspNetCore;
+@using Microsoft.AspNetCore.Html
+@using Microsoft.AspNetCore.Mvc;
+@using VeryGenericSite.Models;
+
+@model             SubArticleShortModel
+
+    <div class="column bg-white bg-opacity-75 mb-lg-2 mt-lg-3 mt-md-2 ms-3 me-3 h-25">
+        <div class="d-block overflow-visible h-25" style="max-height:25em; height:25em;">
+            <vc:wide-panorama-image componentmodel="@(new WidePanoramaImageModel(ViewBag.PanoModel))">
+            </vc:wide-panorama-image>
+        </div>
+        <div class="d-flex justify-content-around bg-white bg-opacity-50">
+            <div class="row mb-3">
+                @{
+                    int a;
+                    int k = 0;
+                    if(Model.ImgCaption!.Length > 0)
+                    {
+                        a = Model.ImgCaption[0].ImgIndex ?? -1;
+
+                    }
+                    else
+                    {
+                        a = -1; 
+                    }
+                    for(int i=0; i<Model.ImgPaths!.Length; i++)
+                    {
+                        if (a > 0 && (i == a))
+                        {
+
+                                    @if (Model.ImgCaption[k].SubArticle != null)
+                                    {
+                                        @if (i % 4 == 0)
+                                        {
+
+                                             <gsfigure 
+                                                gs-src="@Model.ImgPaths[k]" 
+                                                gs-caption="@Model.ImgCaption[k].ImgCaption"
+                                                gs-article="@Model.ImgCaption[k].SubArticle"
+                                                gs-top="false"
+                                                gs-right="false"
+                                                gs-text-end="false"
+                                                gs-capupper="false">
+                                             </gsfigure>
+                                             
+                                        }
+                                        else if( i%4 == 1)
+                                        {
+                                            <div class="col bg-white me-lg-2 mt-2">
+                                                <p>@Model.ImgCaption[k].SubArticle</p>
+                                                <figure class="figure">
+                                                    <img src="@Model.ImgPaths[(int)Model.ImgCaption[k].ImgIndex]" class="img-fluid float-start w-100 h-100" style="object-fit: contain;"/>
+                                                </figure>                                                                           
+                                            </div>
+                                        }
+                                        else if(i % 4 == 2)
+                                        {
+                                            <gsfigure
+                                                gs-src="@Model.ImgPaths[k]"
+                                                gs-caption="@Model.ImgCaption[k].ImgCaption"
+                                                gs-top="true"                                
+                                                gs-right="true"                              
+                                                gs-capupper="true"                          
+                                                gs-text-end="true"
+                                                gs-article ="@Model.ImgCaption[k].SubArticle">
+                                            </gsfigure>               
+                                        }
+                                        else if(i%4 == 3)
+                                        {
+                                            <gsfigure
+                                                gs-src="@Model.ImgPaths[k]"
+                                                gs-caption="@Model.ImgCaption[k].ImgCaption"
+                                                gs-article="@Model.ImgCaption[k].SubArticle"
+                                                gs-top=false
+                                                gs-right=false
+                                                gs-capupper=false 
+                                                gs-text-start=true>
+                                            </gsfigure>
+                                            
+                                        }
+                                    }
+                            k = (k+1 < Model.ImgCaption.Length) ? ++k : k;
+                            a = ((int)Model.ImgCaption[k].ImgIndex < Model.ImgPaths.Length) ? (int)Model.ImgCaption[k].ImgIndex : a;
+                        }
+                        else
+                        {
+                            <div class="col bg-white mt-2 me-lg-2">
+                               <div class="flex-col mt-3">
+                                @*the float variable needs to be rethought. again context dependent on
+                                        where the image ends up living. Also the text alignment in the 
+                                        paragraph too.*@
+                                @*ill need some extra logic too set the propper article too the image*@
+                                    <img src="@Model.ImgPaths![i]" alt="..OOps" class="rounded-2 float-start w-100 h-100 me-2 img-fluid"/>
+                                    <p>@Model.Article![1]</p>
+                                </div>
+                            </div>
+                        }
+                   }
+                }
+        </div>
+</div>
+</div>

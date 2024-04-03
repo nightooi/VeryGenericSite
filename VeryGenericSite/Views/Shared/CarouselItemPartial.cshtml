@@ -1,0 +1,19 @@
+﻿@using VeryGenericSite.Models;
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model CarouselItemModel
+<partial name="~/Views/Shared/CarouselItemTextPartial.cshtml" model=Model.TextModel.ToList()/>
+            <div class="d-inline-flex flex-row flex-grow-1 flex-fill mainheadercontainer justify-content-start">
+                <h2>@Model.Header</h2>
+            </div>
+
+@{
+    var id = 0;
+        @foreach(var item in Model.ImgPath)
+        {
+            var idname = "imgcont" + id.ToString(); 
+                <img src="@Url.Content(@item)" class="imgimgcont" loading="lazy" id=@idname alt="..."/>
+        id++;
+        }
+}

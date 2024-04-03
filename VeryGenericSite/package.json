@@ -1,25 +1,26 @@
 {
-  "name": "mahbo",
+  "name": "mariohabo",
   "version": "1.0.0",
-  "description": "First complete project publication",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nightooi/MarioHabo.git"
+    "url": "git+https://github.com/nightooi/VeryGenericSite.git"
   },
   "author": "nightooi",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/nightooi/MarioHabo/issues"
+    "url": "https://github.com/nightooi/VeryGenericSite/issues"
   },
-  "homepage": "https://github.com/nightooi/MarioHabo#readme",
+  "homepage": "https://github.com/nightooi/VeryGenericSite#readme",
   "devDependencies": {
     "eslint": "^8.56.0"
   },
   "dependencies": {
-    "md5": "^2.3.0"
+    "eslint-config-jquery": "^3.0.2",
+    "MD5": "^1.3.0"
   }
 }
